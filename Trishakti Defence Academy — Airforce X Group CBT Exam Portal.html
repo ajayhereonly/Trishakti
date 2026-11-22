@@ -1,0 +1,1857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trishakti Defence Academy — Airforce X Group CBT Exam Portal</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    body {
+      font-family: 'Inter', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    .svg-box svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    @keyframes pulseUrgent {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+    .timer-urgent {
+      animation: pulseUrgent 1s ease-in-out infinite;
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { background: #ffffff !important; }
+      .print-break-inside-avoid { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+  <!-- Top Navigation Bar -->
+  <header class="bg-[#1e3a5f] text-white shadow-md sticky top-0 z-40 no-print">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3 min-w-0">
+        <div class="w-10 h-10 rounded-lg bg-amber-500 text-[#1e3a5f] font-black text-lg flex items-center justify-center shrink-0 shadow">
+          TDA
+        </div>
+        <div class="min-w-0">
+          <div class="font-extrabold tracking-tight text-sm sm:text-base truncate">TRISHAKTI DEFENCE ACADEMY, BHIM (RAJ.)</div>
+          <div class="text-xs text-slate-300 truncate">Airforce Group X (Agniveer Vayu) &bull; CBT Diagnostic Portal</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Language Mode Selector -->
+        <div class="inline-flex rounded-lg bg-[#142944] p-0.5 border border-slate-600 text-xs font-semibold" role="group" aria-label="Language mode">
+          <button type="button" id="langBtnBoth" class="lang-btn px-2.5 py-1.5 rounded-md transition">EN + HI</button>
+          <button type="button" id="langBtnEn" class="lang-btn px-2.5 py-1.5 rounded-md transition">English</button>
+          <button type="button" id="langBtnHi" class="lang-btn px-2.5 py-1.5 rounded-md transition">हिन्दी</button>
+        </div>
+
+        <button type="button" id="navHomeBtn" class="hidden px-3 py-1.5 rounded-lg bg-slate-700 hover:bg-slate-600 text-xs font-semibold transition">
+          Home
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Toast Banner -->
+  <div id="toastBanner" class="hidden fixed top-20 right-4 z-50 max-w-sm bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl border border-slate-700 text-sm font-medium flex items-center gap-2.5 no-print">
+    <span id="toastIcon" class="text-amber-400 font-bold">&#9432;</span>
+    <span id="toastMsg"></span>
+  </div>
+
+  <!-- Main App Container -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-6">
+
+    <!-- ==================== VIEW 1: HOME / TEST HUB ==================== -->
+    <section id="viewHome" class="space-y-6">
+      <!-- Hero + Student Profile Card -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-7">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div class="space-y-2 max-w-2xl">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800">
+              Agniveer Vayu (Group X) &bull; Foundation &amp; Grasping Power Check
+            </span>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-[#1e3a5f] leading-tight">
+              Online CBT Diagnostic Test Portal
+            </h1>
+            <p class="text-sm sm:text-base text-slate-600">
+              Attempt both 30-minute bilingual assessments under real exam timer conditions to measure fluid IQ, conceptual Physics base (2024&ndash;2025 PYQs), and get an automated <strong>Areas of Improvement</strong> report.
+            </p>
+            <p class="text-xs sm:text-sm text-amber-700 font-medium">
+              30 मिनट के टाइमर के साथ दोनों द्विभाषी टेस्ट दें और अंत में विस्तृत परिणाम व सुधार के क्षेत्र (Areas of Improvement) देखें।
+            </p>
+          </div>
+
+          <!-- Student Info Inputs -->
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 w-full lg:w-80 space-y-3 shrink-0">
+            <div class="text-xs font-bold uppercase tracking-wider text-slate-500">Candidate Details / विद्यार्थी विवरण</div>
+            <div>
+              <label for="studentNameInput" class="block text-xs font-semibold text-slate-700 mb-1">Student Name / नाम</label>
+              <input id="studentNameInput" type="text" placeholder="e.g., Rohit Singh" class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]" />
+            </div>
+            <div>
+              <label for="studentBatchInput" class="block text-xs font-semibold text-slate-700 mb-1">Batch / बैच</label>
+              <input id="studentBatchInput" type="text" placeholder="e.g., Airforce X Foundation" class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f]" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Two Test Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Test 1 Card: Mensa IQ -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col overflow-hidden">
+          <div class="bg-gradient-to-r from-[#1e3a5f] to-[#0f766e] p-5 text-white">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-white/20">TEST 1 &bull; FLUID IQ</span>
+              <span id="iqBadgeStatus" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-white/15">Not Attempted</span>
+            </div>
+            <h2 class="text-xl font-extrabold leading-snug">Mensa-Style IQ &amp; Mental Ability Test</h2>
+            <p class="text-xs text-teal-100 mt-1">मेन्सा-शैली आईक्यू (IQ) एवं तार्किक-मानसिक क्षमता परीक्षण</p>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="bg-slate-50 border border-slate-200 rounded-lg p-2.5">
+                  <div class="text-lg font-extrabold text-[#1e3a5f]">20</div>
+                  <div class="text-[11px] text-slate-500 font-medium">Questions</div>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded-lg p-2.5">
+                  <div class="text-lg font-extrabold text-[#0f766e]">30 min</div>
+                  <div class="text-[11px] text-slate-500 font-medium">Timer</div>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded-lg p-2.5">
+                  <div class="text-lg font-extrabold text-emerald-700">+1 / 0</div>
+                  <div class="text-[11px] text-slate-500 font-medium">No Negative</div>
+                </div>
+              </div>
+              <p class="text-sm text-slate-600">
+                Measures pure pattern recognition, 3&times;3 visual matrices, spatial rotations, numerical logic, and cognitive reflection &mdash; no school syllabus memorization required.
+              </p>
+              <div class="flex flex-wrap gap-1.5 text-xs">
+                <span class="px-2 py-0.5 rounded bg-teal-50 text-teal-800 border border-teal-200">Visual Matrices (SVG)</span>
+                <span class="px-2 py-0.5 rounded bg-teal-50 text-teal-800 border border-teal-200">Numerical Logic</span>
+                <span class="px-2 py-0.5 rounded bg-teal-50 text-teal-800 border border-teal-200">Deductive Reasoning</span>
+                <span class="px-2 py-0.5 rounded bg-teal-50 text-teal-800 border border-teal-200">Coding &amp; Analogy</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 pt-2">
+              <button type="button" id="startIqBtn" class="flex-1 py-3 px-4 rounded-xl bg-[#0f766e] hover:bg-[#0d655e] text-white font-bold text-sm shadow-sm transition cursor-pointer">
+                Start IQ Test (30:00) &rarr;
+              </button>
+              <button type="button" id="viewIqResultBtn" class="hidden py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm transition cursor-pointer">
+                Last Result
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Test 2 Card: Basic Physics PYQ -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col overflow-hidden">
+          <div class="bg-gradient-to-r from-[#1e3a5f] to-[#b45309] p-5 text-white">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-white/20">TEST 2 &bull; PHYSICS PYQ</span>
+              <span id="phyBadgeStatus" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-white/15">Not Attempted</span>
+            </div>
+            <h2 class="text-xl font-extrabold leading-snug">Basic Physics Diagnostic Test (2024&ndash;2025 PYQs)</h2>
+            <p class="text-xs text-amber-100 mt-1">वायुसेना ग्रुप-X भौतिक विज्ञान आधारभूत एवं मानसिक क्षमता परीक्षण</p>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="bg-slate-50 border border-slate-200 rounded-lg p-2.5">
+                  <div class="text-lg font-extrabold text-[#1e3a5f]">20</div>
+                  <div class="text-[11px] text-slate-500 font-medium">Questions</div>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded-lg p-2.5">
+                  <div class="text-lg font-extrabold text-[#b45309]">30 min</div>
+                  <div class="text-[11px] text-slate-500 font-medium">Timer</div>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded-lg p-2.5">
+                  <div class="text-lg font-extrabold text-rose-700">+1 / &minus;0.25</div>
+                  <div class="text-[11px] text-slate-500 font-medium">Real IAF Marking</div>
+                </div>
+              </div>
+              <p class="text-sm text-slate-600">
+                Strictly based on verified Airforce Group X Physics PYQs (18 Mar 2024 &amp; 22 Mar 2025). Checks foundational laws, units &amp; dimensions, and proportional grasping power.
+              </p>
+              <div class="flex flex-wrap gap-1.5 text-xs">
+                <span class="px-2 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-200">Units &amp; Dimensions</span>
+                <span class="px-2 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-200">Electricity &amp; Circuits</span>
+                <span class="px-2 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-200">Mechanics &amp; Gravity</span>
+                <span class="px-2 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-200">Waves, Optics &amp; Thermo</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 pt-2">
+              <button type="button" id="startPhyBtn" class="flex-1 py-3 px-4 rounded-xl bg-[#1e3a5f] hover:bg-[#162d4b] text-white font-bold text-sm shadow-sm transition cursor-pointer">
+                Start Physics Test (30:00) &rarr;
+              </button>
+              <button type="button" id="viewPhyResultBtn" class="hidden py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm transition cursor-pointer">
+                Last Result
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Combined Performance Summary (shown once at least 1 test is completed) -->
+      <div id="homeSessionSummary" class="hidden bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h3 class="text-base font-extrabold text-[#1e3a5f]">Session Progress / सत्र प्रगति</h3>
+            <p id="homeSessionText" class="text-sm text-slate-600 mt-0.5"></p>
+          </div>
+          <button type="button" id="resetSessionBtn" class="px-3.5 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-600 hover:bg-slate-100 transition cursor-pointer">
+            Reset Saved Attempts
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 2: CBT EXAM INTERFACE ==================== -->
+    <section id="viewExam" class="hidden space-y-4">
+      <!-- Exam Status & Timer Strip -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 flex flex-wrap items-center justify-between gap-3">
+        <div class="min-w-0">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span id="examTitleBadge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#1e3a5f] text-white"></span>
+            <span id="examMarkingBadge" class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200"></span>
+          </div>
+          <div id="examStudentLabel" class="text-xs text-slate-500 mt-1"></div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <!-- Live Countdown Timer -->
+          <div id="timerBox" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 border border-slate-300 text-[#1e3a5f] font-mono font-extrabold text-lg">
+            <span class="text-sm font-sans font-semibold uppercase tracking-wide opacity-75">Time</span>
+            <span id="timerDisplay">30:00</span>
+          </div>
+          <button type="button" id="openSubmitModalBtn" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-sm transition cursor-pointer">
+            Submit Test
+          </button>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
+        <div id="examProgressBar" class="bg-[#0f766e] h-2 transition-all duration-300" style="width: 5%;"></div>
+      </div>
+
+      <!-- Main CBT Split Layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+        <!-- Question Area (8 cols) -->
+        <div class="lg:col-span-8 bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6 space-y-5">
+          <div class="flex items-center justify-between gap-2 pb-3 border-b border-slate-200">
+            <div class="flex items-center gap-2">
+              <span id="qNumberBadge" class="px-3 py-1 rounded-lg bg-[#1e3a5f] text-white font-extrabold text-sm">Q1 / 20</span>
+              <span id="qDomainBadge" class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-200"></span>
+            </div>
+            <span id="qSourceBadge" class="text-xs font-semibold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-lg border border-amber-200"></span>
+          </div>
+
+          <!-- Question Text -->
+          <div class="space-y-2">
+            <p id="qTextEn" class="text-base sm:text-lg font-bold text-slate-900 leading-relaxed"></p>
+            <p id="qTextHi" class="text-sm sm:text-base text-slate-600 leading-relaxed"></p>
+          </div>
+
+          <!-- Visual Stimulus Container (SVG Matrix / Numerical Matrix) -->
+          <div id="qVisualContainer" class="hidden svg-box p-3 bg-slate-50 rounded-xl border border-slate-200 inline-block"></div>
+
+          <!-- Options Container -->
+          <div id="optionsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1"></div>
+
+          <!-- Action Controls -->
+          <div class="pt-4 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+              <button type="button" id="markReviewBtn" class="px-3.5 py-2 rounded-xl border border-purple-300 bg-purple-50 hover:bg-purple-100 text-purple-800 font-semibold text-xs sm:text-sm transition cursor-pointer">
+                Mark for Review
+              </button>
+              <button type="button" id="clearResponseBtn" class="px-3.5 py-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 font-semibold text-xs sm:text-sm transition cursor-pointer">
+                Clear
+              </button>
+            </div>
+            <div class="flex items-center gap-2">
+              <button type="button" id="prevQBtn" class="px-4 py-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-800 font-bold text-sm transition cursor-pointer">
+                &larr; Prev
+              </button>
+              <button type="button" id="nextQBtn" class="px-5 py-2 rounded-xl bg-[#1e3a5f] hover:bg-[#162d4b] text-white font-bold text-sm shadow-sm transition cursor-pointer">
+                Save &amp; Next &rarr;
+              </button>
+            </div>
+          </div>
+
+          <div class="text-[11px] text-slate-400 flex flex-wrap items-center justify-between gap-2 pt-1">
+            <span>Keyboard shortcuts: <strong>A/B/C/D</strong> or <strong>1&ndash;4</strong> to select, <strong>&larr; / &rarr;</strong> to navigate.</span>
+            <span id="autoSaveNote">Responses auto-saved locally</span>
+          </div>
+        </div>
+
+        <!-- Question Palette Sidebar (4 cols) -->
+        <aside class="lg:col-span-4 bg-white rounded-2xl border border-slate-200 shadow-sm p-5 space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="font-extrabold text-sm text-[#1e3a5f]">Question Palette / प्रश्न पैनल</h3>
+            <span id="paletteCounter" class="text-xs font-bold text-slate-600">0 / 20 Answered</span>
+          </div>
+
+          <div id="paletteGrid" class="grid grid-cols-5 gap-2"></div>
+
+          <div class="pt-3 border-t border-slate-200 grid grid-cols-2 gap-2 text-xs text-slate-600">
+            <div class="flex items-center gap-2">
+              <span class="w-4 h-4 rounded bg-emerald-600 inline-block"></span> Answered (<span id="statAns">0</span>)
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-4 h-4 rounded bg-slate-200 border border-slate-300 inline-block"></span> Unanswered (<span id="statUnans">20</span>)
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-4 h-4 rounded bg-purple-600 inline-block"></span> Marked (<span id="statMarked">0</span>)
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-4 h-4 rounded border-2 border-[#1e3a5f] bg-blue-50 inline-block"></span> Current
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 3: RESULT & AREAS OF IMPROVEMENT ==================== -->
+    <section id="viewResult" class="hidden space-y-6">
+      <!-- Top Result Scorecard Banner -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="bg-[#1e3a5f] text-white p-5 sm:p-6 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <div class="text-xs font-bold uppercase tracking-wider text-amber-300">Diagnostic Assessment Report / परिणाम विश्लेषण</div>
+            <h2 id="resTestTitle" class="text-xl sm:text-2xl font-extrabold mt-1"></h2>
+            <p id="resStudentMeta" class="text-xs sm:text-sm text-slate-300 mt-1"></p>
+          </div>
+          <div class="flex items-center gap-2 no-print">
+            <button type="button" id="printResultBtn" class="px-3.5 py-2 rounded-xl bg-white/15 hover:bg-white/25 text-white font-semibold text-xs sm:text-sm transition cursor-pointer">
+              Print / Save PDF
+            </button>
+            <button type="button" id="retakeTestBtn" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-[#1e3a5f] font-bold text-xs sm:text-sm transition cursor-pointer">
+              Retake Test
+            </button>
+            <button type="button" id="switchOtherTestBtn" class="px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs sm:text-sm transition cursor-pointer">
+              Take Other Test &rarr;
+            </button>
+          </div>
+        </div>
+
+        <!-- KPI Metrics Grid -->
+        <div class="p-5 sm:p-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-center">
+            <div class="text-xs font-semibold text-slate-500">Final Score</div>
+            <div id="resScore" class="text-2xl font-black text-[#1e3a5f] mt-1">0 / 20</div>
+          </div>
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-center">
+            <div class="text-xs font-semibold text-slate-500">Percentage</div>
+            <div id="resPercent" class="text-2xl font-black text-[#0f766e] mt-1">0%</div>
+          </div>
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3.5 text-center">
+            <div class="text-xs font-semibold text-emerald-700">Correct</div>
+            <div id="resCorrect" class="text-2xl font-black text-emerald-700 mt-1">0</div>
+          </div>
+          <div class="bg-rose-50 border border-rose-200 rounded-xl p-3.5 text-center">
+            <div class="text-xs font-semibold text-rose-700">Incorrect</div>
+            <div id="resWrong" class="text-2xl font-black text-rose-700 mt-1">0</div>
+          </div>
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-center">
+            <div class="text-xs font-semibold text-slate-500">Accuracy</div>
+            <div id="resAccuracy" class="text-2xl font-black text-slate-800 mt-1">0%</div>
+          </div>
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-3.5 text-center">
+            <div class="text-xs font-semibold text-amber-800">Time Taken</div>
+            <div id="resTimeTaken" class="text-2xl font-black text-amber-800 mt-1">00:00</div>
+          </div>
+        </div>
+
+        <!-- Performance Band Verdict -->
+        <div class="px-5 sm:px-6 pb-5">
+          <div id="resBandBox" class="rounded-xl p-4 border flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <div id="resBandTitle" class="font-extrabold text-base"></div>
+              <p id="resBandDesc" class="text-sm mt-0.5"></p>
+            </div>
+            <div id="resNegNote" class="text-xs font-bold px-3 py-1.5 rounded-lg bg-white/80 border shrink-0"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Analytics + Areas of Improvement Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Topic-wise Accuracy Chart (5 cols) -->
+        <div class="lg:col-span-5 bg-white rounded-2xl border border-slate-200 shadow-sm p-5 space-y-3 print-break-inside-avoid">
+          <div>
+            <h3 class="text-base font-extrabold text-[#1e3a5f]">Topic-Wise Accuracy / विषयवार सटीकता</h3>
+            <p class="text-xs text-slate-500">Visual breakdown of your performance across each skill domain.</p>
+          </div>
+          <div class="relative h-64">
+            <canvas id="topicChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Personalized Areas of Improvement (7 cols) -->
+        <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200 shadow-sm p-5 space-y-4 print-break-inside-avoid">
+          <div>
+            <h3 class="text-base font-extrabold text-[#1e3a5f]">Areas of Improvement &amp; Action Plan / सुधार के क्षेत्र</h3>
+            <p class="text-xs text-slate-500">Targeted diagnosis based on your missed questions, speed, and accuracy.</p>
+          </div>
+          <div id="improvementList" class="space-y-3"></div>
+        </div>
+      </div>
+
+      <!-- Question-by-Question Detailed Review -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
+          <div>
+            <h3 class="text-base font-extrabold text-[#1e3a5f]">Question-by-Question Review / प्रश्नवार समीक्षा</h3>
+            <p class="text-xs text-slate-500">Review every question with official answers and bilingual concept explanations.</p>
+          </div>
+          <div class="inline-flex rounded-lg bg-slate-100 p-1 text-xs font-bold no-print" role="group">
+            <button type="button" data-filter="all" class="rev-filter px-3 py-1.5 rounded-md transition cursor-pointer">All (20)</button>
+            <button type="button" data-filter="wrong" class="rev-filter px-3 py-1.5 rounded-md transition cursor-pointer">Incorrect</button>
+            <button type="button" data-filter="unattempted" class="rev-filter px-3 py-1.5 rounded-md transition cursor-pointer">Unattempted</button>
+            <button type="button" data-filter="correct" class="rev-filter px-3 py-1.5 rounded-md transition cursor-pointer">Correct</button>
+          </div>
+        </div>
+        <div id="reviewList" class="space-y-4"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Submit Confirmation Modal -->
+  <div id="submitModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 no-print">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-4 border border-slate-200">
+      <h3 class="text-lg font-extrabold text-[#1e3a5f]">Submit Test? / क्या आप टेस्ट जमा करना चाहते हैं?</h3>
+      <p class="text-sm text-slate-600">Once submitted, the timer will stop and your detailed diagnostic report will be generated.</p>
+      <div class="grid grid-cols-3 gap-2 text-center bg-slate-50 p-3 rounded-xl border border-slate-200">
+        <div>
+          <div id="modalAnsCount" class="text-xl font-black text-emerald-600">0</div>
+          <div class="text-[11px] font-semibold text-slate-500">Answered</div>
+        </div>
+        <div>
+          <div id="modalUnansCount" class="text-xl font-black text-slate-700">0</div>
+          <div class="text-[11px] font-semibold text-slate-500">Unanswered</div>
+        </div>
+        <div>
+          <div id="modalMarkedCount" class="text-xl font-black text-purple-600">0</div>
+          <div class="text-[11px] font-semibold text-slate-500">Marked</div>
+        </div>
+      </div>
+      <div class="flex items-center justify-end gap-2 pt-2">
+        <button type="button" id="cancelSubmitBtn" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 font-bold text-sm hover:bg-slate-100 transition cursor-pointer">
+          Resume Test
+        </button>
+        <button type="button" id="confirmSubmitBtn" class="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-sm transition cursor-pointer">
+          Confirm &amp; View Result
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500 no-print">
+    Trishakti Defence Academy, Bhim (Rajasthan) &bull; Contact: +91 9799662820 &bull; Airforce Group X Foundation Portal
+  </footer>
+
+  <script>
+    // ==================== SVG ASSETS FOR MENSA IQ TEST (Q1-Q6) ====================
+    const IQ_SVGS = {
+      q1_matrix: `<svg width="174" height="174" viewBox="0 0 156 156" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="152" height="152" fill="#fff" stroke="#1e3a5f" stroke-width="2"/>
+        <line x1="53" y1="2" x2="53" y2="154" stroke="#94a3b8" stroke-width="1.2"/>
+        <line x1="104" y1="2" x2="104" y2="154" stroke="#94a3b8" stroke-width="1.2"/>
+        <line x1="2" y1="53" x2="154" y2="53" stroke="#94a3b8" stroke-width="1.2"/>
+        <line x1="2" y1="104" x2="154" y2="104" stroke="#94a3b8" stroke-width="1.2"/>
+        <circle cx="27" cy="27" r="14" fill="none" stroke="#1e3a5f" stroke-width="2.2"/>
+        <rect x="65" y="14" width="26" height="26" fill="none" stroke="#1e3a5f" stroke-width="2.2"/>
+        <circle cx="78" cy="27" r="4.5" fill="#1e3a5f"/>
+        <polygon points="129,12 114,40 144,40" fill="#1e3a5f"/>
+        <rect x="14" y="65" width="26" height="26" fill="#1e3a5f"/>
+        <polygon points="78,63 63,91 93,91" fill="none" stroke="#1e3a5f" stroke-width="2.2"/>
+        <circle cx="129" cy="78" r="14" fill="none" stroke="#1e3a5f" stroke-width="2.2"/>
+        <circle cx="129" cy="78" r="4.5" fill="#1e3a5f"/>
+        <polygon points="27,114 12,142 42,142" fill="none" stroke="#1e3a5f" stroke-width="2.2"/>
+        <circle cx="27" cy="133" r="4" fill="#1e3a5f"/>
+        <circle cx="78" cy="129" r="14" fill="#1e3a5f"/>
+        <rect x="106" y="106" width="46" height="46" fill="#f0fdfa"/>
+        <text x="129" y="137" text-anchor="middle" font-size="22" font-weight="800" fill="#0f766e">?</text>
+      </svg>`,
+      q1_opts: [
+        `<svg width="44" height="44" viewBox="0 0 46 46"><rect x="1" y="1" width="44" height="44" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><rect x="10" y="10" width="26" height="26" fill="none" stroke="#1e3a5f" stroke-width="2.2"/></svg>`,
+        `<svg width="44" height="44" viewBox="0 0 46 46"><rect x="1" y="1" width="44" height="44" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><rect x="10" y="10" width="26" height="26" fill="#1e3a5f"/></svg>`,
+        `<svg width="44" height="44" viewBox="0 0 46 46"><rect x="1" y="1" width="44" height="44" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><circle cx="23" cy="23" r="13" fill="none" stroke="#1e3a5f" stroke-width="2.2"/></svg>`,
+        `<svg width="44" height="44" viewBox="0 0 46 46"><rect x="1" y="1" width="44" height="44" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><rect x="10" y="10" width="26" height="26" fill="none" stroke="#1e3a5f" stroke-width="2.2"/><circle cx="23" cy="23" r="4.5" fill="#1e3a5f"/></svg>`
+      ],
+      q2_seq: `<svg width="268" height="62" viewBox="0 0 245 58" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="4" width="50" height="50" fill="#fff" stroke="#1e3a5f" stroke-width="1.8"/>
+        <circle cx="11" cy="13" r="4" fill="#0f766e"/>
+        <line x1="27" y1="42" x2="27" y2="18" stroke="#1e3a5f" stroke-width="2.5"/>
+        <polygon points="27,13 22,22 32,22" fill="#1e3a5f"/>
+        <rect x="64" y="4" width="50" height="50" fill="#fff" stroke="#1e3a5f" stroke-width="1.8"/>
+        <circle cx="105" cy="13" r="4" fill="#0f766e"/>
+        <line x1="76" y1="29" x2="100" y2="29" stroke="#1e3a5f" stroke-width="2.5"/>
+        <polygon points="105,29 96,24 96,34" fill="#1e3a5f"/>
+        <rect x="126" y="4" width="50" height="50" fill="#fff" stroke="#1e3a5f" stroke-width="1.8"/>
+        <circle cx="167" cy="45" r="4" fill="#0f766e"/>
+        <line x1="151" y1="16" x2="151" y2="40" stroke="#1e3a5f" stroke-width="2.5"/>
+        <polygon points="151,45 146,36 156,36" fill="#1e3a5f"/>
+        <rect x="188" y="4" width="50" height="50" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.8" stroke-dasharray="4,2"/>
+        <text x="213" y="37" text-anchor="middle" font-size="22" font-weight="800" fill="#0f766e">?</text>
+      </svg>`,
+      q2_opts: [
+        `<svg width="44" height="44" viewBox="0 0 46 46"><rect x="1" y="1" width="44" height="44" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><circle cx="10" cy="10" r="3.5" fill="#0f766e"/><line x1="35" y1="23" x2="14" y2="23" stroke="#1e3a5f" stroke-width="2.2"/><polygon points="9,23 17,18 17,28" fill="#1e3a5f"/></svg>`,
+        `<svg width="44" height="44" viewBox="0 0 46 46"><rect x="1" y="1" width="44" height="44" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><circle cx="10" cy="36" r="3.5" fill="#0f766e"/><line x1="35" y1="23" x2="14" y2="23" stroke="#1e3a5f" stroke-width="2.2"/><polygon points="9,23 17,18 17,28" fill="#1e3a5f"/></svg>`,
+        `<svg width="44" height="44" viewBox="0 0 46 46"><rect x="1" y="1" width="44" height="44" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><circle cx="10" cy="36" r="3.5" fill="#0f766e"/><line x1="23" y1="35" x2="23" y2="14" stroke="#1e3a5f" stroke-width="2.2"/><polygon points="23,9 18,17 28,17" fill="#1e3a5f"/></svg>`,
+        `<svg width="44" height="44" viewBox="0 0 46 46"><rect x="1" y="1" width="44" height="44" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><circle cx="10" cy="36" r="3.5" fill="#0f766e"/><line x1="11" y1="23" x2="32" y2="23" stroke="#1e3a5f" stroke-width="2.2"/><polygon points="37,23 29,18 29,28" fill="#1e3a5f"/></svg>`
+      ],
+      q3_matrix: `<svg width="174" height="174" viewBox="0 0 156 156" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="152" height="152" fill="#fff" stroke="#1e3a5f" stroke-width="2"/>
+        <line x1="53" y1="2" x2="53" y2="154" stroke="#94a3b8" stroke-width="1.2"/>
+        <line x1="104" y1="2" x2="104" y2="154" stroke="#94a3b8" stroke-width="1.2"/>
+        <line x1="2" y1="53" x2="154" y2="53" stroke="#94a3b8" stroke-width="1.2"/>
+        <line x1="2" y1="104" x2="154" y2="104" stroke="#94a3b8" stroke-width="1.2"/>
+        <line x1="12" y1="27" x2="42" y2="27" stroke="#1e3a5f" stroke-width="2.5"/>
+        <line x1="78" y1="12" x2="78" y2="42" stroke="#1e3a5f" stroke-width="2.5"/>
+        <line x1="114" y1="27" x2="144" y2="27" stroke="#1e3a5f" stroke-width="2.5"/>
+        <line x1="129" y1="12" x2="129" y2="42" stroke="#1e3a5f" stroke-width="2.5"/>
+        <line x1="14" y1="91" x2="40" y2="65" stroke="#1e3a5f" stroke-width="2.5"/>
+        <line x1="65" y1="65" x2="91" y2="91" stroke="#1e3a5f" stroke-width="2.5"/>
+        <line x1="116" y1="91" x2="142" y2="65" stroke="#1e3a5f" stroke-width="2.5"/>
+        <line x1="116" y1="65" x2="142" y2="91" stroke="#1e3a5f" stroke-width="2.5"/>
+        <line x1="14" y1="129" x2="40" y2="129" stroke="#1e3a5f" stroke-width="2.5"/>
+        <line x1="27" y1="116" x2="27" y2="142" stroke="#1e3a5f" stroke-width="2.5"/>
+        <rect x="65" y="116" width="26" height="26" fill="none" stroke="#1e3a5f" stroke-width="2.5"/>
+        <rect x="106" y="106" width="46" height="46" fill="#f0fdfa"/>
+        <text x="129" y="137" text-anchor="middle" font-size="22" font-weight="800" fill="#0f766e">?</text>
+      </svg>`,
+      q3_opts: [
+        `<svg width="44" height="44" viewBox="0 0 46 46"><rect x="1" y="1" width="44" height="44" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><rect x="10" y="10" width="26" height="26" fill="none" stroke="#1e3a5f" stroke-width="2.2"/><line x1="10" y1="10" x2="36" y2="36" stroke="#1e3a5f" stroke-width="2"/><line x1="36" y1="10" x2="10" y2="36" stroke="#1e3a5f" stroke-width="2"/></svg>`,
+        `<svg width="44" height="44" viewBox="0 0 46 46"><rect x="1" y="1" width="44" height="44" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><circle cx="23" cy="23" r="13" fill="none" stroke="#1e3a5f" stroke-width="2.2"/><line x1="10" y1="23" x2="36" y2="23" stroke="#1e3a5f" stroke-width="2"/><line x1="23" y1="10" x2="23" y2="36" stroke="#1e3a5f" stroke-width="2"/></svg>`,
+        `<svg width="44" height="44" viewBox="0 0 46 46"><rect x="1" y="1" width="44" height="44" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><rect x="10" y="10" width="26" height="26" fill="none" stroke="#1e3a5f" stroke-width="2.2"/><line x1="10" y1="23" x2="36" y2="23" stroke="#1e3a5f" stroke-width="2"/><line x1="23" y1="10" x2="23" y2="36" stroke="#1e3a5f" stroke-width="2"/></svg>`,
+        `<svg width="44" height="44" viewBox="0 0 46 46"><rect x="1" y="1" width="44" height="44" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><rect x="10" y="10" width="26" height="26" fill="none" stroke="#1e3a5f" stroke-width="2.2"/></svg>`
+      ],
+      q4_seq: `<svg width="268" height="62" viewBox="0 0 245 58" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="4" width="50" height="50" fill="#fff" stroke="#1e3a5f" stroke-width="1.6"/>
+        <polygon points="27,10 10,44 44,44" fill="none" stroke="#1e3a5f" stroke-width="2"/>
+        <circle cx="27" cy="34" r="3" fill="#0f766e"/>
+        <rect x="64" y="4" width="50" height="50" fill="#fff" stroke="#1e3a5f" stroke-width="1.6"/>
+        <rect x="74" y="14" width="30" height="30" fill="none" stroke="#1e3a5f" stroke-width="2"/>
+        <circle cx="83" cy="29" r="3" fill="#0f766e"/>
+        <circle cx="95" cy="29" r="3" fill="#0f766e"/>
+        <rect x="126" y="4" width="50" height="50" fill="#fff" stroke="#1e3a5f" stroke-width="1.6"/>
+        <polygon points="151,10 169,23 162,44 140,44 133,23" fill="none" stroke="#1e3a5f" stroke-width="2"/>
+        <circle cx="151" cy="23" r="2.8" fill="#0f766e"/>
+        <circle cx="145" cy="34" r="2.8" fill="#0f766e"/>
+        <circle cx="157" cy="34" r="2.8" fill="#0f766e"/>
+        <rect x="188" y="4" width="50" height="50" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.8" stroke-dasharray="4,2"/>
+        <text x="213" y="37" text-anchor="middle" font-size="22" font-weight="800" fill="#0f766e">?</text>
+      </svg>`,
+      q5_opts: [
+        `<svg width="52" height="52" viewBox="0 0 56 56"><rect x="1" y="1" width="54" height="54" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><path d="M18,12 L18,42 L38,42" fill="none" stroke="#1e3a5f" stroke-width="5" stroke-linecap="square"/><circle cx="38" cy="42" r="4.5" fill="#0f766e"/></svg>`,
+        `<svg width="52" height="52" viewBox="0 0 56 56"><rect x="1" y="1" width="54" height="54" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><path d="M44,18 L14,18 L14,38" fill="none" stroke="#1e3a5f" stroke-width="5" stroke-linecap="square"/><circle cx="14" cy="38" r="4.5" fill="#0f766e"/></svg>`,
+        `<svg width="52" height="52" viewBox="0 0 56 56"><rect x="1" y="1" width="54" height="54" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><path d="M38,12 L38,42 L18,42" fill="none" stroke="#1e3a5f" stroke-width="5" stroke-linecap="square"/><circle cx="18" cy="42" r="4.5" fill="#0f766e"/></svg>`,
+        `<svg width="52" height="52" viewBox="0 0 56 56"><rect x="1" y="1" width="54" height="54" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><path d="M38,44 L38,14 L18,14" fill="none" stroke="#1e3a5f" stroke-width="5" stroke-linecap="square"/><circle cx="18" cy="14" r="4.5" fill="#0f766e"/></svg>`
+      ],
+      q6_matrix: `<svg width="174" height="174" viewBox="0 0 156 156" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="152" height="152" fill="#fff" stroke="#1e3a5f" stroke-width="2"/>
+        <line x1="53" y1="2" x2="53" y2="154" stroke="#94a3b8" stroke-width="1.2"/>
+        <line x1="104" y1="2" x2="104" y2="154" stroke="#94a3b8" stroke-width="1.2"/>
+        <line x1="2" y1="53" x2="154" y2="53" stroke="#94a3b8" stroke-width="1.2"/>
+        <line x1="2" y1="104" x2="154" y2="104" stroke="#94a3b8" stroke-width="1.2"/>
+        <rect x="12" y="12" width="30" height="30" fill="none" stroke="#1e3a5f" stroke-width="1.4"/><rect x="12" y="12" width="15" height="15" fill="#1e3a5f"/>
+        <rect x="63" y="12" width="30" height="30" fill="none" stroke="#1e3a5f" stroke-width="1.4"/><rect x="78" y="12" width="15" height="15" fill="#1e3a5f"/>
+        <rect x="114" y="12" width="30" height="30" fill="none" stroke="#1e3a5f" stroke-width="1.4"/><rect x="129" y="27" width="15" height="15" fill="#1e3a5f"/>
+        <rect x="12" y="63" width="30" height="30" fill="none" stroke="#1e3a5f" stroke-width="1.4"/><rect x="27" y="63" width="15" height="15" fill="#1e3a5f"/>
+        <rect x="63" y="63" width="30" height="30" fill="none" stroke="#1e3a5f" stroke-width="1.4"/><rect x="78" y="78" width="15" height="15" fill="#1e3a5f"/>
+        <rect x="114" y="63" width="30" height="30" fill="none" stroke="#1e3a5f" stroke-width="1.4"/><rect x="114" y="78" width="15" height="15" fill="#1e3a5f"/>
+        <rect x="12" y="114" width="30" height="30" fill="none" stroke="#1e3a5f" stroke-width="1.4"/><rect x="27" y="129" width="15" height="15" fill="#1e3a5f"/>
+        <rect x="63" y="114" width="30" height="30" fill="none" stroke="#1e3a5f" stroke-width="1.4"/><rect x="63" y="129" width="15" height="15" fill="#1e3a5f"/>
+        <rect x="106" y="106" width="46" height="46" fill="#f0fdfa"/>
+        <text x="129" y="137" text-anchor="middle" font-size="22" font-weight="800" fill="#0f766e">?</text>
+      </svg>`,
+      q9_matrix: `<table class="border-collapse text-center font-extrabold text-base">
+        <tr>
+          <td class="border-2 border-[#1e3a5f] w-14 h-10 bg-white">3</td>
+          <td class="border-2 border-[#1e3a5f] w-14 h-10 bg-white">4</td>
+          <td class="border-2 border-[#1e3a5f] w-14 h-10 bg-white">25</td>
+        </tr>
+        <tr>
+          <td class="border-2 border-[#1e3a5f] w-14 h-10 bg-white">5</td>
+          <td class="border-2 border-[#1e3a5f] w-14 h-10 bg-white">12</td>
+          <td class="border-2 border-[#1e3a5f] w-14 h-10 bg-white">169</td>
+        </tr>
+        <tr>
+          <td class="border-2 border-[#1e3a5f] w-14 h-10 bg-white">6</td>
+          <td class="border-2 border-[#1e3a5f] w-14 h-10 bg-white">8</td>
+          <td class="border-2 border-[#1e3a5f] w-14 h-10 bg-teal-50 text-[#0f766e]">?</td>
+        </tr>
+      </table>`
+    };
+
+    // ==================== COMPLETE TEST DATASETS (FROM ATTACHED PDFs) ====================
+    const TESTS = {
+      iq: {
+        id: 'iq',
+        titleEn: 'Mensa-Style IQ & Mental Ability Test',
+        titleHi: 'मेन्सा-शैली आईक्यू (IQ) एवं तार्किक-मानसिक क्षमता परीक्षण',
+        durationSec: 30 * 60,
+        posMark: 1,
+        negMark: 0,
+        markingLabel: '+1 / No Negative',
+        advice: {
+          'Visual & Spatial Logic': {
+            en: 'Practice 3x3 Raven matrices by checking row-wise and column-wise rules separately (shape, shading, rotation angle, and reflection vs rotation).',
+            hi: '3x3 मैट्रिक्स में पंक्ति व स्तंभ के नियम अलग-अलग जाँचें (आकार, छायांकन, घूर्णन और दर्पण प्रतिबिंब)।'
+          },
+          'Numerical Patterns': {
+            en: 'Drill difference-of-differences series, squares/cubes up to 20, and clock-angle basics (30° per hour for hour hand).',
+            hi: 'संख्या श्रृंखला में अंतर का पैटर्न, 1 से 20 तक वर्ग/घन और घड़ी के कोण (30°/घंटा) का अभ्यास करें।'
+          },
+          'Deductive & Cognitive Logic': {
+            en: 'Draw quick Venn diagrams for syllogisms and read word traps slowly (e.g., bat-and-ball style equations) before jumping to intuitive answers.',
+            hi: 'न्याय निगमन (Syllogism) के लिए वेन आरेख बनाएं और शब्दों वाले प्रश्नों को ध्यान से पढ़कर समीकरण बनाएं।'
+          },
+          'Abstract Coding & Reasoning': {
+            en: 'Memorize A=1 to Z=26 letter positions and opposite pairs (AZ, BY, CX) to solve coding and letter series in under 15 seconds.',
+            hi: 'A=1 से Z=26 तक अक्षर क्रम और विपरीत युग्म (AZ, BY, CX) याद रखें ताकि कोडिंग प्रश्न जल्दी हल हों।'
+          }
+        },
+        questions: [
+          {
+            id: 1, domain: 'Visual & Spatial Logic', tag: 'Visual Matrix',
+            en: 'Study the 3×3 pattern matrix and choose the figure that completes the missing box (?):',
+            hi: '3×3 पैटर्न मैट्रिक्स का अध्ययन करें और प्रश्नचिह्न (?) के स्थान पर आने वाली सही आकृति चुनें:',
+            visual: IQ_SVGS.q1_matrix,
+            optVisuals: IQ_SVGS.q1_opts,
+            optsEn: ['Outline Square', 'Solid Square', 'Outline Circle', 'Dotted Square'],
+            optsHi: ['खाली वर्ग', 'भरा वर्ग', 'खाली वृत्त', 'बिंदु वाला वर्ग'],
+            ans: 0,
+            expEn: 'Each row & column has Circle, Square, Triangle once, and Outline, Dot, Solid once -> Outline Square.',
+            expHi: 'प्रत्येक पंक्ति व स्तंभ में वृत्त, वर्ग, त्रिभुज और खाली, बिंदु, भरा एक-एक बार है -> खाली वर्ग।'
+          },
+          {
+            id: 2, domain: 'Visual & Spatial Logic', tag: 'Rotation Logic',
+            en: 'Which figure comes next in the sequence?',
+            hi: 'दी गई श्रृंखला में अगली आकृति कौन-सी होगी?',
+            visual: IQ_SVGS.q2_seq,
+            optVisuals: IQ_SVGS.q2_opts,
+            optsEn: ['Arrow Left, Dot Top-Left', 'Arrow Left, Dot Bottom-Left', 'Arrow Up, Dot Bottom-Left', 'Arrow Right, Dot Bottom-Left'],
+            optsHi: ['तीर बाएँ, बिंदु ऊपर-बाएँ', 'तीर बाएँ, बिंदु नीचे-बाएँ', 'तीर ऊपर, बिंदु नीचे-बाएँ', 'तीर दाएँ, बिंदु नीचे-बाएँ'],
+            ans: 1,
+            expEn: 'Both the arrow and corner dot rotate 90° clockwise at each step -> Arrow Left, Dot Bottom-Left.',
+            expHi: 'तीर और कोने का बिंदु दोनों हर चरण में 90° दक्षिणावर्त घूमते हैं -> तीर बाएँ, बिंदु नीचे-बाएँ।'
+          },
+          {
+            id: 3, domain: 'Visual & Spatial Logic', tag: 'Visual Synthesis',
+            en: 'Each row follows a visual combination rule. Find the missing figure (?):',
+            hi: 'प्रत्येक पंक्ति एक संयोजन नियम का पालन करती है। लुप्त आकृति (?) चुनें:',
+            visual: IQ_SVGS.q3_matrix,
+            optVisuals: IQ_SVGS.q3_opts,
+            optsEn: ['Square with X', 'Circle with Plus', 'Square with Plus', 'Empty Square'],
+            optsHi: ['वर्ग में X', 'वृत्त में +', 'वर्ग में +', 'खाली वर्ग'],
+            ans: 2,
+            expEn: 'Column 3 combines Column 1 + Column 2 -> Plus (+) + Square = Square with Plus inside.',
+            expHi: 'स्तंभ 3 = स्तंभ 1 + स्तंभ 2 का संयोजन -> (+) और वर्ग मिलकर वर्ग के अंदर (+) बनाते हैं।'
+          },
+          {
+            id: 4, domain: 'Visual & Spatial Logic', tag: 'Dual Progression',
+            en: 'Observe both the outer shape and inner dots. Which figure comes next?',
+            hi: 'बाहरी आकृति और अंदर के बिंदुओं को देखें। अगली आकृति कौन-सी होगी?',
+            visual: IQ_SVGS.q4_seq,
+            optsEn: ['Hexagon (6 sides) with 3 dots', 'Pentagon (5 sides) with 4 dots', 'Hexagon (6 sides) with 4 dots', 'Circle with 4 dots'],
+            optsHi: ['षट्भुज में 3 बिंदु', 'पंचभुज में 4 बिंदु', 'षट्भुज में 4 बिंदु', 'वृत्त में 4 बिंदु'],
+            ans: 2,
+            expEn: 'Sides increase by +1 (3, 4, 5 -> 6 Hexagon) and inner dots increase by +1 (1, 2, 3 -> 4 dots).',
+            expHi: 'भुजाएँ +1 बढ़ रही हैं (3, 4, 5 -> 6 षट्भुज) और बिंदु भी +1 बढ़ रहे हैं (1, 2, 3 -> 4 बिंदु)।'
+          },
+          {
+            id: 5, domain: 'Visual & Spatial Logic', tag: 'Spatial Odd-One-Out',
+            en: 'Three figures are rotations of the exact same shape. Which ONE is mirror-flipped (odd one out)?',
+            hi: 'तीन आकृतियाँ एक ही आकार को घुमाने (rotate) पर बनी हैं। कौन-सी एक दर्पण-उलटी (विषम) है?',
+            optVisuals: IQ_SVGS.q5_opts,
+            optsEn: ['Figure A', 'Figure B', 'Figure C', 'Figure D'],
+            optsHi: ['आकृति A', 'आकृति B', 'आकृति C', 'आकृति D'],
+            ans: 2,
+            expEn: '(A), (B), (D) are 2D rotations of the same L-shape; (C) is a mirror reflection (flipped).',
+            expHi: '(A), (B), (D) एक ही L-आकार के घूर्णन हैं; (C) दर्पण प्रतिबिंब (उलटा) है।'
+          },
+          {
+            id: 6, domain: 'Visual & Spatial Logic', tag: 'Positional Shift',
+            en: 'Which quadrant should be shaded in the missing box (?) to complete the pattern?',
+            hi: 'पैटर्न को पूरा करने के लिए लुप्त बॉक्स (?) में कौन-सा चतुर्थांश (quadrant) छायांकित होना चाहिए?',
+            visual: IQ_SVGS.q6_matrix,
+            optsEn: ['Top-Left', 'Top-Right', 'Bottom-Left', 'Bottom-Right'],
+            optsHi: ['ऊपर-बाएँ', 'ऊपर-दाएँ', 'नीचे-बाएँ', 'नीचे-दाएँ'],
+            ans: 0,
+            expEn: 'Shaded quadrant shifts 1 step clockwise across each row (Bottom-Right -> Bottom-Left -> Top-Left).',
+            expHi: 'छायांकित चतुर्थांश हर पंक्ति में 1 कदम दक्षिणावर्त घूमता है (नीचे-दाएँ -> नीचे-बाएँ -> ऊपर-बाएँ)।'
+          },
+          {
+            id: 7, domain: 'Numerical Patterns', tag: 'Number Series',
+            en: 'Find the next number in the series: 2, 6, 12, 20, 30, ?',
+            hi: 'श्रृंखला में अगली संख्या ज्ञात कीजिए: 2, 6, 12, 20, 30, ?',
+            optsEn: ['38', '40', '42', '44'],
+            optsHi: ['38', '40', '42', '44'],
+            ans: 2,
+            expEn: 'Differences increase by +2 (+4, +6, +8, +10, +12): 30 + 12 = 42.',
+            expHi: 'अंतर हर बार +2 बढ़ रहा है (+4, +6, +8, +10, +12): 30 + 12 = 42।'
+          },
+          {
+            id: 8, domain: 'Numerical Patterns', tag: 'Number Series',
+            en: 'Find the missing number in the series: 3, 7, 15, 31, 63, ?',
+            hi: 'श्रृंखला में लुप्त संख्या ज्ञात कीजिए: 3, 7, 15, 31, 63, ?',
+            optsEn: ['125', '127', '129', '126'],
+            optsHi: ['125', '127', '129', '126'],
+            ans: 1,
+            expEn: 'Each term = (previous × 2) + 1: 63 × 2 + 1 = 127.',
+            expHi: 'प्रत्येक पद = (पिछला पद × 2) + 1: 63 × 2 + 1 = 127।'
+          },
+          {
+            id: 9, domain: 'Numerical Patterns', tag: 'Number Matrix',
+            en: 'Find the missing number (?) in the numerical matrix:',
+            hi: 'संख्यात्मक मैट्रिक्स में लुप्त संख्या (?) ज्ञात कीजिए:',
+            visual: IQ_SVGS.q9_matrix,
+            optsEn: ['48', '64', '100', '144'],
+            optsHi: ['48', '64', '100', '144'],
+            ans: 2,
+            expEn: 'Col 1² + Col 2² = Col 3 (3²+4²=25; 5²+12²=169) -> 6² + 8² = 36 + 64 = 100.',
+            expHi: 'स्तंभ 1² + स्तंभ 2² = स्तंभ 3 -> 6² + 8² = 36 + 64 = 100।'
+          },
+          {
+            id: 10, domain: 'Numerical Patterns', tag: 'Classification',
+            en: 'Which number is the odd one out from the following?',
+            hi: 'निम्नलिखित में से कौन-सी संख्या अन्य तीन से भिन्न (विषम) है?',
+            optsEn: ['27', '64', '144', '125'],
+            optsHi: ['27', '64', '144', '125'],
+            ans: 2,
+            expEn: '27 (3³), 64 (4³), and 125 (5³) are perfect cubes; 144 (12²) is only a square.',
+            expHi: '27 (3³), 64 (4³) और 125 (5³) पूर्ण घन हैं, जबकि 144 (12²) केवल एक वर्ग है।'
+          },
+          {
+            id: 11, domain: 'Numerical Patterns', tag: 'Abstract Operator',
+            en: 'If 3 ★ 4 = 19, 5 ★ 2 = 17, and 4 ★ 6 = 34, then what is 7 ★ 3?',
+            hi: 'यदि 3 ★ 4 = 19, 5 ★ 2 = 17 और 4 ★ 6 = 34 है, तो 7 ★ 3 का मान क्या होगा?',
+            optsEn: ['28', '31', '34', '24'],
+            optsHi: ['28', '31', '34', '24'],
+            ans: 1,
+            expEn: 'Rule: a ★ b = (a × b) + a + b -> (7 × 3) + 7 + 3 = 21 + 10 = 31.',
+            expHi: 'नियम: a ★ b = (a × b) + a + b -> (7 × 3) + 7 + 3 = 31।'
+          },
+          {
+            id: 12, domain: 'Numerical Patterns', tag: 'Mental Geometry',
+            en: 'A clock shows 3:00. Through how many degrees does the hour hand rotate by 5:30?',
+            hi: 'एक घड़ी में 3:00 बजे हैं। 5:30 बजे तक घंटे की सुई कितने डिग्री घूम जाएगी?',
+            optsEn: ['60°', '75°', '85°', '90°'],
+            optsHi: ['60°', '75°', '85°', '90°'],
+            ans: 1,
+            expEn: 'Hour hand moves 30° per hour; in 2.5 hours (3:00 to 5:30) = 2.5 × 30° = 75°.',
+            expHi: 'घंटे की सुई 1 घंटे में 30° घूमती है; 2.5 घंटे में = 2.5 × 30° = 75°।'
+          },
+          {
+            id: 13, domain: 'Deductive & Cognitive Logic', tag: 'Syllogism',
+            en: 'Statements: All pilots are brave. Some brave people are engineers. Which conclusion DEFINITELY follows?',
+            hi: 'कथन: सभी पायलट बहादुर हैं। कुछ बहादुर लोग इंजीनियर हैं। कौन-सा निष्कर्ष निश्चित रूप से सही है?',
+            optsEn: ['All engineers are pilots', 'Some pilots are engineers', 'All brave people are pilots', 'None of the above definitely follows'],
+            optsHi: ['सभी इंजीनियर पायलट हैं', 'कुछ पायलट इंजीनियर हैं', 'सभी बहादुर पायलट हैं', 'इनमें से कोई निश्चित नहीं है'],
+            ans: 3,
+            expEn: 'Pilots are inside Brave, and Engineers overlap Brave, but Pilots and Engineers may have zero overlap.',
+            expHi: 'पायलट और इंजीनियर के बीच कोई निश्चित संबंध नहीं दिया गया है, अतः कोई भी निष्कर्ष निश्चित नहीं है।'
+          },
+          {
+            id: 14, domain: 'Deductive & Cognitive Logic', tag: 'Ordering Logic',
+            en: 'Five cadets A, B, C, D, and E ran a race. A finished before B, but after C. D finished before E, but after B. Who finished 3rd (in the middle)?',
+            hi: 'पाँच कैडेट A, B, C, D और E ने दौड़ लगाई। A, B से पहले लेकिन C के बाद पहुँचा। D, E से पहले लेकिन B के बाद पहुँचा। तीसरे (मध्य) स्थान पर कौन रहा?',
+            optsEn: ['A', 'B', 'C', 'D'],
+            optsHi: ['A', 'B', 'C', 'D'],
+            ans: 1,
+            expEn: 'Finishing order from 1st to 5th: C > A > B > D > E. Middle (3rd) is B.',
+            expHi: 'क्रम: C > A > B > D > E। मध्य (तीसरे) स्थान पर B है।'
+          },
+          {
+            id: 15, domain: 'Deductive & Cognitive Logic', tag: 'Spatial Direction',
+            en: 'Ravi walks 6 km North, then turns right and walks 8 km. What is his straight-line distance from the starting point?',
+            hi: 'रवि उत्तर दिशा में 6 km चलता है, फिर दाएँ मुड़कर 8 km चलता है। प्रारंभिक बिंदु से उसकी सीधी दूरी कितनी है?',
+            optsEn: ['10 km', '12 km', '14 km', '8 km'],
+            optsHi: ['10 km', '12 km', '14 km', '8 km'],
+            ans: 0,
+            expEn: 'Right triangle with sides 6 km and 8 km -> Hypotenuse = √(6² + 8²) = √100 = 10 km.',
+            expHi: 'पाइथागोरस प्रमेय से: √(6² + 8²) = √100 = 10 km।'
+          },
+          {
+            id: 16, domain: 'Deductive & Cognitive Logic', tag: 'Cognitive Reflection',
+            en: 'A pen and a notebook together cost ₹110. The notebook costs ₹100 more than the pen. How much does the pen cost?',
+            hi: 'एक पेन और एक नोटबुक की कुल कीमत ₹110 है। नोटबुक की कीमत पेन से ₹100 अधिक है। पेन की कीमत कितनी है?',
+            optsEn: ['₹10', '₹5', '₹15', '₹20'],
+            optsHi: ['₹10', '₹5', '₹15', '₹20'],
+            ans: 1,
+            expEn: 'Pen = x, Notebook = x + 100 -> 2x + 100 = 110 -> x = ₹5 (Notebook = ₹105).',
+            expHi: 'पेन = x, नोटबुक = x + 100 -> 2x + 100 = 110 -> पेन = ₹5 (नोटबुक = ₹105)।'
+          },
+          {
+            id: 17, domain: 'Abstract Coding & Reasoning', tag: 'Letter Pattern',
+            en: 'Find the next pair in the series: AZ, CX, EV, GT, ?',
+            hi: 'दी गई अक्षर श्रृंखला में अगला युग्म ज्ञात कीजिए: AZ, CX, EV, GT, ?',
+            optsEn: ['IR', 'HS', 'JQ', 'KP'],
+            optsHi: ['IR', 'HS', 'JQ', 'KP'],
+            ans: 0,
+            expEn: '1st letter +2 (A, C, E, G -> I); 2nd letter -2 (Z, X, V, T -> R) -> IR.',
+            expHi: 'पहला अक्षर +2 (A, C, E, G -> I) और दूसरा अक्षर -2 (Z, X, V, T -> R) -> IR।'
+          },
+          {
+            id: 18, domain: 'Abstract Coding & Reasoning', tag: 'Coding Logic',
+            en: 'In a certain code, AIR is written as BJS. How is VAYU written in that code?',
+            hi: 'किसी निश्चित कूट भाषा में AIR को BJS लिखा जाता है। उसी कूट में VAYU को कैसे लिखा जाएगा?',
+            optsEn: ['WBZV', 'WBZU', 'XCZV', 'UZXT'],
+            optsHi: ['WBZV', 'WBZU', 'XCZV', 'UZXT'],
+            ans: 0,
+            expEn: 'Each letter shifts +1 forward: V->W, A->B, Y->Z, U->V -> WBZV.',
+            expHi: 'प्रत्येक अक्षर +1 आगे बढ़ता है: V->W, A->B, Y->Z, U->V -> WBZV।'
+          },
+          {
+            id: 19, domain: 'Abstract Coding & Reasoning', tag: 'Verbal Analogy',
+            en: 'Thermometer : Temperature :: Barometer : ?',
+            hi: 'थर्मामीटर : तापमान :: बैरोमीटर : ?',
+            optsEn: ['Wind speed', 'Atmospheric pressure', 'Humidity', 'Rainfall'],
+            optsHi: ['हवा की गति', 'वायुमंडलीय दाब', 'आर्द्रता', 'वर्षा'],
+            ans: 1,
+            expEn: 'Thermometer measures temperature; Barometer measures atmospheric pressure.',
+            expHi: 'थर्मामीटर तापमान मापता है; बैरोमीटर वायुमंडलीय दाब मापता है।'
+          },
+          {
+            id: 20, domain: 'Abstract Coding & Reasoning', tag: 'Rate Logic',
+            en: 'If 5 machines take 5 minutes to make 5 parts, how many minutes will 100 machines take to make 100 parts?',
+            hi: 'यदि 5 मशीनें 5 पुर्जे बनाने में 5 मिनट लेती हैं, तो 100 मशीनें 100 पुर्जे बनाने में कितने मिनट लेंगी?',
+            optsEn: ['100 minutes', '20 minutes', '5 minutes', '1 minute'],
+            optsHi: ['100 मिनट', '20 मिनट', '5 मिनट', '1 मिनट'],
+            ans: 2,
+            expEn: 'Each machine takes 5 min for 1 part; working in parallel, 100 machines make 100 parts in 5 min.',
+            expHi: 'प्रत्येक मशीन 1 पुर्जा 5 मिनट में बनाती है; 100 मशीनें एक साथ 100 पुर्जे 5 मिनट में बना देंगी।'
+          }
+        ]
+      },
+
+      physics: {
+        id: 'physics',
+        titleEn: 'Basic Physics Diagnostic Test (2024–2025 PYQs)',
+        titleHi: 'वायुसेना ग्रुप-X भौतिक विज्ञान आधारभूत परीक्षण (2024–2025 PYQs)',
+        durationSec: 30 * 60,
+        posMark: 1,
+        negMark: 0.25,
+        markingLabel: '+1 / −0.25 Negative',
+        advice: {
+          'Units & Dimensions': {
+            en: 'Revise dimensional formulas of Work/Energy [ML²T⁻²], Impulse/Momentum [MLT⁻¹], and dimensionless ratios like specific gravity.',
+            hi: 'कार्य/ऊर्जा [ML²T⁻²], आवेग/संवेग [MLT⁻¹] तथा विमाहीन राशियों (विशिष्ट गुरुत्व) के विमीय सूत्र दोहराएं।'
+          },
+          'Electricity & Circuits': {
+            en: 'Distinguish Resistance (R = ρL/A, depends on geometry) from Resistivity (ρ, depends only on material & temp) and revise KCL/KVL conservation laws.',
+            hi: 'प्रतिरोध (R = ρL/A) और प्रतिरोधकता (ρ, केवल पदार्थ व ताप पर निर्भर) का अंतर तथा किरचॉफ के संरक्षण नियम स्पष्ट करें।'
+          },
+          'Mechanics & Gravitation': {
+            en: 'Practice proportional scaling of g = GM/R², Earth rotation effect at equator (g\' = g - Rω²), Newton\'s 2nd law (F=ma), and SHM energy positions.',
+            hi: 'g = GM/R² के अनुपात वाले प्रश्न, पृथ्वी घूर्णन का g पर प्रभाव, F=ma तथा SHM में ऊर्जा की स्थितियों का अभ्यास करें।'
+          },
+          'Waves & Optics': {
+            en: 'Revise EM spectrum vs mechanical waves (sound), mirror formula sign convention (1/f = 1/v + 1/u), scattering of light, and pressure independence of sound speed.',
+            hi: 'विद्युतचुंबकीय व ध्वनि तरंगों में अंतर, दर्पण सूत्र के चिह्न नियम और प्रकाश के प्रकीर्णन को दोहराएं।'
+          },
+          'Thermodynamics & Fluids': {
+            en: 'Review absolute vs gauge pressure (P - Pa) and what each law of thermodynamics defines (0th: Temp, 1st: Internal Energy, 2nd: Entropy).',
+            hi: 'प्रमापी दाब (P - Pa) और ऊष्मागतिकी के सभी नियमों की मूल परिभाषाएँ (प्रथम: आंतरिक ऊर्जा, द्वितीय: एन्ट्रॉपी) याद करें।'
+          },
+          'Electrostatics & AC': {
+            en: 'Revise capacitor dielectric effect (E = E₀/K, C = KC₀) and AC power factor (cos φ = 1 when current & voltage are in phase).',
+            hi: 'संधारित्र में परावैद्युतांक का प्रभाव (E = E₀/K) और AC शक्ति गुणांक (cos φ = 1) का सूत्र दोहराएं।'
+          }
+        },
+        questions: [
+          {
+            id: 1, domain: 'Electricity & Circuits', tag: 'PYQ: 22 Mar 2025',
+            en: 'When the length and area of cross-section of a wire both are doubled, then its resistance:',
+            hi: 'जब किसी तार की लंबाई और अनुप्रस्थ काट का क्षेत्रफल दोनों को दोगुना किया जाता है, तो उसका प्रतिरोध:',
+            optsEn: ['Will become half', 'Will be doubled', 'Will remain the same', 'Will become four times'],
+            optsHi: ['आधा हो जाएगा', 'दोगुना हो जाएगा', 'वैसा ही रहेगा', 'चार गुना हो जाएगा'],
+            ans: 2,
+            expEn: 'R = ρL/A; doubling both L and A cancels out (2L / 2A = L/A), so resistance remains the same.',
+            expHi: 'R = ρL/A; लंबाई L और क्षेत्रफल A दोनों दोगुना करने पर प्रतिरोध समान रहता है।'
+          },
+          {
+            id: 2, domain: 'Waves & Optics', tag: 'PYQ: 22 Mar 2025',
+            en: 'Which of the following is NOT an electromagnetic wave?',
+            hi: 'निम्नलिखित में से कौन-सी एक विद्युतचुंबकीय तरंग नहीं है?',
+            optsEn: ['Radio wave', 'Infrared wave', 'Sound wave', 'Ultraviolet wave'],
+            optsHi: ['रेडियो तरंग', 'अवरक्त तरंग', 'ध्वनि तरंग', 'पराबैंगनी तरंग'],
+            ans: 2,
+            expEn: 'Sound is a mechanical longitudinal wave (needs a medium), not an electromagnetic wave.',
+            expHi: 'ध्वनि एक यांत्रिक तरंग है जिसे माध्यम की आवश्यकता होती है, यह विद्युतचुंबकीय तरंग नहीं है।'
+          },
+          {
+            id: 3, domain: 'Units & Dimensions', tag: 'PYQ: 22 Mar 2025',
+            en: 'The dimensions of energy are:',
+            hi: 'ऊर्जा की विमाएँ क्या हैं?',
+            optsEn: ['[M¹ L⁻¹ T⁻¹]', '[M² L² T²]', '[M¹ L⁻² T⁻¹]', '[M¹ L² T⁻²]'],
+            optsHi: ['[M¹ L⁻¹ T⁻¹]', '[M² L² T²]', '[M¹ L⁻² T⁻¹]', '[M¹ L² T⁻²]'],
+            ans: 3,
+            expEn: 'Energy = Force × Distance = [M¹ L¹ T⁻²] × [L¹] = [M¹ L² T⁻²].',
+            expHi: 'ऊर्जा = बल × विस्थापन = [M¹ L² T⁻²]।'
+          },
+          {
+            id: 4, domain: 'Units & Dimensions', tag: 'PYQ: 22 Mar 2025',
+            en: 'The dimensional formula for specific gravity is given by:',
+            hi: 'विशिष्ट गुरुत्व (Specific Gravity) के लिए विमीय सूत्र है:',
+            optsEn: ['[M¹ L⁰ T¹]', '[M¹ L¹ T⁰]', '[M⁰ L⁰ T⁰]', '[M⁰ L¹ T¹]'],
+            optsHi: ['[M¹ L⁰ T¹]', '[M¹ L¹ T⁰]', '[M⁰ L⁰ T⁰]', '[M⁰ L¹ T¹]'],
+            ans: 2,
+            expEn: 'Specific gravity is the ratio of two densities, so it is dimensionless: [M⁰ L⁰ T⁰].',
+            expHi: 'विशिष्ट गुरुत्व दो घनत्वों का अनुपात है, अतः यह विमाहीन [M⁰ L⁰ T⁰] है।'
+          },
+          {
+            id: 5, domain: 'Waves & Optics', tag: 'PYQ: 22 Mar 2025',
+            en: 'An object is placed 30 cm before a concave mirror of focal length 20 cm to get a real image. What will be the distance of the image from the mirror?',
+            hi: 'वास्तविक प्रतिबिंब प्राप्त करने के लिए एक वस्तु 20 cm फोकस दूरी वाले अवतल दर्पण से 30 cm की दूरी पर रखी है। दर्पण से प्रतिबिंब की दूरी कितनी होगी?',
+            optsEn: ['60 cm', '30 cm', '20 cm', '40 cm'],
+            optsHi: ['60 cm', '30 cm', '20 cm', '40 cm'],
+            ans: 0,
+            expEn: 'Mirror formula: 1/(-20) = 1/v + 1/(-30) => 1/v = -1/20 + 1/30 = -1/60 => v = -60 cm.',
+            expHi: 'दर्पण सूत्र 1/f = 1/v + 1/u से: 1/(-20) = 1/v + 1/(-30) => v = -60 cm।'
+          },
+          {
+            id: 6, domain: 'Electricity & Circuits', tag: 'PYQ: 22 Mar 2025',
+            en: 'Kirchhoff\'s current law is based on conservation of ______ while Kirchhoff\'s voltage law is based on conservation of ______.',
+            hi: 'किरचॉफ का धारा नियम ______ के संरक्षण पर आधारित है जबकि किरचॉफ का वोल्टेज नियम ______ के संरक्षण पर आधारित है।',
+            optsEn: ['Mass, Charge', 'Energy, Charge', 'Charge, Energy', 'Charge, Mass'],
+            optsHi: ['द्रव्यमान, आवेश', 'ऊर्जा, आवेश', 'आवेश, ऊर्जा', 'आवेश, द्रव्यमान'],
+            ans: 2,
+            expEn: 'Kirchhoff\'s Current Law (KCL) = Conservation of Charge; Voltage Law (KVL) = Conservation of Energy.',
+            expHi: 'किरचॉफ का धारा नियम (KCL) आवेश संरक्षण और वोल्टेज नियम (KVL) ऊर्जा संरक्षण पर आधारित है।'
+          },
+          {
+            id: 7, domain: 'Waves & Optics', tag: 'PYQ: 22 Mar 2025',
+            en: 'The velocity of sound in air is taken as 332 m/s. If the pressure of a gas is doubled (at constant temperature), what will be the velocity of sound in air?',
+            hi: 'हवा में ध्वनि का वेग 332 m/s है। यदि नियत ताप पर गैस का दाब दोगुना कर दिया जाए, तो हवा में ध्वनि का वेग क्या होगा?',
+            optsEn: ['996 m/s', '664 m/s', '166 m/s', '332 m/s'],
+            optsHi: ['996 m/s', '664 m/s', '166 m/s', '332 m/s'],
+            ans: 3,
+            expEn: 'At constant temperature, speed of sound in an ideal gas is independent of pressure -> remains 332 m/s.',
+            expHi: 'नियत ताप पर गैस में ध्वनि की चाल दाब पर निर्भर नहीं करती, अतः वेग 332 m/s ही रहेगा।'
+          },
+          {
+            id: 8, domain: 'Mechanics & Gravitation', tag: 'PYQ: 22 Mar 2025',
+            en: 'If the mass of a planet is four times the mass of the Earth and its radius is half of the Earth, then the gravitational acceleration of the planet is:',
+            hi: 'यदि किसी ग्रह का द्रव्यमान पृथ्वी के द्रव्यमान से चार गुना है और त्रिज्या पृथ्वी की आधी है, तो ग्रह का गुरुत्वीय त्वरण कितना होगा?',
+            optsEn: ['16g', 'g / 16', '4g', 'g'],
+            optsHi: ['16g', 'g / 16', '4g', 'g'],
+            ans: 0,
+            expEn: 'g\' = GM\'/R\'² = G(4M)/(R/2)² = 16(GM/R²) = 16g.',
+            expHi: 'g\' = G(4M)/(R/2)² = 16g।'
+          },
+          {
+            id: 9, domain: 'Thermodynamics & Fluids', tag: 'PYQ: 22 Mar 2025',
+            en: 'If the total pressure at point A is P and the atmospheric pressure is Pa, then the gauge pressure is equal to:',
+            hi: 'यदि बिंदु A पर कुल दाब P है और वायुमंडलीय दाब Pa है, तो प्रमापी दाब (Gauge Pressure) किसके बराबर है?',
+            optsEn: ['P', 'P + Pa', 'P − Pa', 'None of these'],
+            optsHi: ['P', 'P + Pa', 'P − Pa', 'इनमें से कोई नहीं'],
+            ans: 2,
+            expEn: 'Gauge pressure = Absolute (total) pressure − Atmospheric pressure = P − Pa.',
+            expHi: 'प्रमापी दाब = कुल दाब − वायुमंडलीय दाब (P − Pa)।'
+          },
+          {
+            id: 10, domain: 'Thermodynamics & Fluids', tag: 'PYQ: 22 Mar 2025',
+            en: 'Second law of thermodynamics defines:',
+            hi: 'ऊष्मागतिकी का दूसरा नियम किसे परिभाषित करता है?',
+            optsEn: ['Internal Energy', 'Entropy', 'Heat', 'Work'],
+            optsHi: ['आंतरिक ऊर्जा', 'एन्ट्रॉपी', 'ऊष्मा', 'कार्य'],
+            ans: 1,
+            expEn: 'First law defines internal energy; Second law of thermodynamics defines Entropy.',
+            expHi: 'ऊष्मागतिकी का दूसरा नियम एन्ट्रॉपी (Entropy) को परिभाषित करता है।'
+          },
+          {
+            id: 11, domain: 'Units & Dimensions', tag: 'PYQ: 18 Mar 2024',
+            en: 'Which of the following pairs of physical quantities has the same dimensions?',
+            hi: 'निम्नलिखित में से भौतिक राशियों के किस युग्म की विमाएँ समान हैं?',
+            optsEn: ['Work and power', 'Momentum and energy', 'Force and power', 'Work and energy'],
+            optsHi: ['कार्य और शक्ति', 'संवेग और ऊर्जा', 'बल और शक्ति', 'कार्य और ऊर्जा'],
+            ans: 3,
+            expEn: 'Both Work and Energy have the same dimensions [M¹ L² T⁻²] and unit (Joule).',
+            expHi: 'कार्य और ऊर्जा दोनों की विमाएँ [M¹ L² T⁻²] समान होती हैं।'
+          },
+          {
+            id: 12, domain: 'Units & Dimensions', tag: 'PYQ: 18 Mar 2024',
+            en: 'Which of the following pairs has the same dimensional formula?',
+            hi: 'निम्नलिखित में से किस युग्म का विमीय सूत्र समान है?',
+            optsEn: ['Surface tension and Force', 'Specific heat and Latent heat', 'Impulse and Momentum', 'All of the above'],
+            optsHi: ['पृष्ठ तनाव और बल', 'विशिष्ट ऊष्मा और गुप्त ऊष्मा', 'आवेग और संवेग', 'उपर्युक्त सभी'],
+            ans: 2,
+            expEn: 'Impulse = Force × Time = Change in Momentum; both share [M¹ L¹ T⁻¹].',
+            expHi: 'आवेग और संवेग दोनों का विमीय सूत्र [M¹ L¹ T⁻¹] समान होता है।'
+          },
+          {
+            id: 13, domain: 'Mechanics & Gravitation', tag: 'PYQ: 18 Mar 2024',
+            en: 'Two forces F₁ and F₂ such that F₂ > F₁ act on a body of mass 5 kg. If a₁ and a₂ represent the accelerations due to F₁ and F₂ respectively, then:',
+            hi: 'दो बल F₁ और F₂ (जहाँ F₂ > F₁) 5 kg द्रव्यमान के पिंड पर कार्य करते हैं। यदि a₁ और a₂ क्रमशः F₁ और F₂ के कारण उत्पन्न त्वरण हैं, तो:',
+            optsEn: ['a₁ = a₂', 'a₁ > a₂', 'a₁ < a₂', 'None of these'],
+            optsHi: ['a₁ = a₂', 'a₁ > a₂', 'a₁ < a₂', 'इनमें से कोई नहीं'],
+            ans: 2,
+            expEn: 'By Newton\'s 2nd law F = ma, for constant mass a ∝ F; since F₂ > F₁, we get a₁ < a₂.',
+            expHi: 'F = ma के अनुसार नियत द्रव्यमान के लिए a ∝ F; चूँकि F₂ > F₁, अतः a₁ < a₂।'
+          },
+          {
+            id: 14, domain: 'Mechanics & Gravitation', tag: 'PYQ: 18 Mar 2024',
+            en: 'If the Earth stops rotating, the value of \'g\' at the equator will:',
+            hi: 'यदि पृथ्वी अपने अक्ष पर घूमना (घूर्णन) बंद कर दे, तो भूमध्य रेखा पर \'g\' का मान:',
+            optsEn: ['Increase', 'Decrease', 'Remain same', 'Become zero'],
+            optsHi: ['बढ़ेगा', 'घटेगा', 'समान रहेगा', 'शून्य हो जाएगा'],
+            ans: 0,
+            expEn: 'At the equator, g\' = g − Rω². When rotation stops (ω = 0), g\' increases to g.',
+            expHi: 'भूमध्य रेखा पर g\' = g − Rω²; घूर्णन रुकने (ω = 0) पर g का मान बढ़ेगा।'
+          },
+          {
+            id: 15, domain: 'Mechanics & Gravitation', tag: 'PYQ: 18 Mar 2024',
+            en: 'The potential energy in simple harmonic motion (SHM) is maximum at:',
+            hi: 'सरल आवर्त गति (SHM) में स्थितिज ऊर्जा अधिकतम कहाँ होती है?',
+            optsEn: ['Mean position', 'Extreme position', 'Mid-point between mean and extreme', 'None of these'],
+            optsHi: ['माध्य स्थिति पर', 'चरम स्थिति पर', 'दोनों के मध्य', 'इनमें से कोई नहीं'],
+            ans: 1,
+            expEn: 'Potential energy PE = ½kx² is maximum where displacement x is maximum (extreme position).',
+            expHi: 'स्थितिज ऊर्जा PE = ½kx² चरम स्थिति (x = ±A) पर अधिकतम होती है।'
+          },
+          {
+            id: 16, domain: 'Waves & Optics', tag: 'PYQ: 18 Mar 2024',
+            en: 'An astronaut in outer space will observe the sky as:',
+            hi: 'बाह्य अंतरिक्ष में एक अंतरिक्ष यात्री को आकाश कैसा दिखाई देगा?',
+            optsEn: ['White', 'Black', 'Blue', 'Red'],
+            optsHi: ['सफेद', 'काला', 'नीला', 'लाल'],
+            ans: 1,
+            expEn: 'There is no atmosphere in outer space, so no scattering of sunlight occurs -> sky appears black.',
+            expHi: 'अंतरिक्ष में वायुमंडल न होने से प्रकाश का प्रकीर्णन नहीं होता, इसलिए आकाश काला दिखता है।'
+          },
+          {
+            id: 17, domain: 'Electricity & Circuits', tag: 'PYQ: 18 Mar 2024',
+            en: 'Copper and pure silicon are heated. Which of the following is true?',
+            hi: 'ताँबे (Copper) और शुद्ध सिलिकॉन (Silicon) को गर्म किया जाता है। निम्नलिखित में से कौन-सा कथन सत्य है?',
+            optsEn: ['Resistivity of Copper increases and Silicon decreases', 'Resistivity of both increases', 'Resistivity of both decreases', 'Resistivity of Copper decreases and Silicon increases'],
+            optsHi: ['ताँबे की प्रतिरोधकता बढ़ती है और सिलिकॉन की घटती है', 'दोनों की प्रतिरोधकता बढ़ती है', 'दोनों की प्रतिरोधकता घटती है', 'ताँबे की घटती है और सिलिकॉन की बढ़ती है'],
+            ans: 0,
+            expEn: 'On heating, resistivity of metals (Copper) increases while resistivity of semiconductors (Silicon) decreases.',
+            expHi: 'गर्म करने पर धातु (ताँबा) की प्रतिरोधकता बढ़ती है और अर्धचालक (सिलिकॉन) की घटती है।'
+          },
+          {
+            id: 18, domain: 'Electricity & Circuits', tag: 'PYQ: 18 Mar 2024',
+            en: 'The resistivity of a current-carrying conducting wire is ρ. If the wire is doubled in length and its area of cross-section is reduced by half, the new resistivity is:',
+            hi: 'एक धारावाही चालक तार की प्रतिरोधकता ρ है। यदि तार की लंबाई दोगुनी कर दी जाए और अनुप्रस्थ काट का क्षेत्रफल आधा कर दिया जाए, तो नई प्रतिरोधकता होगी:',
+            optsEn: ['Half of the old value', 'Same as the old value', 'Double of the old value', 'Four times the old value'],
+            optsHi: ['पुराने मान की आधी', 'पुराने मान के समान', 'पुराने मान की दोगुनी', 'पुराने मान की चार गुनी'],
+            ans: 1,
+            expEn: 'Resistivity (ρ) is an intrinsic property of the material and temperature; it does not depend on wire length or area.',
+            expHi: 'प्रतिरोधकता (ρ) केवल पदार्थ की प्रकृति व ताप पर निर्भर करती है, तार की लंबाई या क्षेत्रफल पर नहीं।'
+          },
+          {
+            id: 19, domain: 'Electrostatics & AC', tag: 'PYQ: 18 Mar 2024',
+            en: 'If the current and voltage in an AC circuit are in phase (phase angle is zero), then what will be its power factor?',
+            hi: 'यदि किसी प्रत्यावर्ती धारा (AC) परिपथ में धारा और वोल्टता समान कला में हैं (कलांतर शून्य है), तो इसका शक्ति गुणांक (Power Factor) क्या होगा?',
+            optsEn: ['Unity (1)', 'Zero', 'Less than one', 'More than one'],
+            optsHi: ['एकांक (1)', 'शून्य', 'एक से कम', 'एक से अधिक'],
+            ans: 0,
+            expEn: 'Power factor = cos(φ). When phase angle φ = 0°, cos(0°) = 1 (Unity).',
+            expHi: 'शक्ति गुणांक = cos(φ) = cos(0°) = 1 (एकांक)।'
+          },
+          {
+            id: 20, domain: 'Electrostatics & AC', tag: 'PYQ: 18 Mar 2024',
+            en: 'When a dielectric material of dielectric constant K is inserted between the plates of a parallel-plate capacitor, the electric field between the plates:',
+            hi: 'जब किसी समानांतर प्लेट संधारित्र की प्लेटों के बीच K परावैद्युतांक वाला पदार्थ रखा जाता है, तो प्लेटों के बीच विद्युत क्षेत्र:',
+            optsEn: ['Increases by a factor of K', 'Decreases by a factor of K', 'Decreases by a factor of K²', 'Remains unchanged'],
+            optsHi: ['K गुना बढ़ जाता है', 'K गुना घट जाता है', 'K² गुना घट जाता है', 'अपरिवर्तित रहता है'],
+            ans: 1,
+            expEn: 'Inserting a dielectric of constant K reduces the electric field inside the capacitor to E = E₀ / K.',
+            expHi: 'परावैद्युतांक K वाला पदार्थ रखने पर प्लेटों के बीच विद्युत क्षेत्र K गुना घट जाता है (E = E₀ / K)।'
+          }
+        ]
+      }
+    };
+
+    // ==================== APP STATE ====================
+    const state = {
+      view: 'home', // 'home' | 'exam' | 'result'
+      lang: 'both', // 'both' | 'en' | 'hi'
+      studentName: '',
+      studentBatch: '',
+      activeTestId: null,
+      currentIndex: 0,
+      answers: {},       // { qIndex: optionIndex }
+      marked: {},        // { qIndex: true }
+      secondsLeft: 1800,
+      timerHandle: null,
+      reviewFilter: 'all',
+      savedResults: {},  // { iq: {...}, physics: {...} }
+      chartInstance: null
+    };
+
+    const LETTERS = ['A', 'B', 'C', 'D'];
+
+    // Safe localStorage helpers
+    function loadSavedState() {
+      try {
+        const raw = localStorage.getItem('tda_cbt_state_v1');
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed.studentName) state.studentName = parsed.studentName;
+          if (parsed.studentBatch) state.studentBatch = parsed.studentBatch;
+          if (parsed.savedResults) state.savedResults = parsed.savedResults;
+        }
+      } catch (e) { /* sandbox storage fallback */ }
+    }
+
+    function persistState() {
+      try {
+        localStorage.setItem('tda_cbt_state_v1', JSON.stringify({
+          studentName: state.studentName,
+          studentBatch: state.studentBatch,
+          savedResults: state.savedResults
+        }));
+      } catch (e) { /* ignore */ }
+    }
+
+    function showToast(msg) {
+      const banner = document.getElementById('toastBanner');
+      const msgEl = document.getElementById('toastMsg');
+      msgEl.textContent = msg;
+      banner.classList.remove('hidden');
+      clearTimeout(banner._t);
+      banner._t = setTimeout(() => banner.classList.add('hidden'), 3600);
+    }
+
+    function formatTime(sec) {
+      const s = Math.max(0, Math.floor(sec));
+      const m = String(Math.floor(s / 60)).padStart(2, '0');
+      const r = String(s % 60).padStart(2, '0');
+      return `${m}:${r}`;
+    }
+
+    // ==================== LANGUAGE SWITCHING ====================
+    function setLang(mode) {
+      state.lang = mode;
+      const map = { both: 'langBtnBoth', en: 'langBtnEn', hi: 'langBtnHi' };
+      Object.entries(map).forEach(([k, id]) => {
+        const btn = document.getElementById(id);
+        if (k === mode) {
+          btn.className = 'lang-btn px-2.5 py-1.5 rounded-md transition bg-amber-400 text-[#1e3a5f] font-bold cursor-pointer';
+        } else {
+          btn.className = 'lang-btn px-2.5 py-1.5 rounded-md transition text-slate-200 hover:text-white cursor-pointer';
+        }
+      });
+      if (state.view === 'exam') renderQuestion();
+      if (state.view === 'result') renderResultView(state.activeTestId);
+    }
+
+    // ==================== VIEW ROUTING ====================
+    function showView(viewName) {
+      state.view = viewName;
+      document.getElementById('viewHome').classList.toggle('hidden', viewName !== 'home');
+      document.getElementById('viewExam').classList.toggle('hidden', viewName !== 'exam');
+      document.getElementById('viewResult').classList.toggle('hidden', viewName !== 'result');
+      document.getElementById('navHomeBtn').classList.toggle('hidden', viewName === 'home');
+      if (viewName === 'home') {
+        stopTimer();
+        renderHomeBadges();
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderHomeBadges() {
+      const iqRes = state.savedResults.iq;
+      const phyRes = state.savedResults.physics;
+
+      const iqBadge = document.getElementById('iqBadgeStatus');
+      const iqBtn = document.getElementById('viewIqResultBtn');
+      if (iqRes) {
+        iqBadge.textContent = `Scored ${iqRes.score}/${iqRes.maxMarks}`;
+        iqBadge.className = 'px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-400 text-slate-950';
+        iqBtn.classList.remove('hidden');
+      } else {
+        iqBadge.textContent = 'Not Attempted';
+        iqBadge.className = 'px-2.5 py-0.5 rounded-full text-xs font-bold bg-white/15';
+        iqBtn.classList.add('hidden');
+      }
+
+      const phyBadge = document.getElementById('phyBadgeStatus');
+      const phyBtn = document.getElementById('viewPhyResultBtn');
+      if (phyRes) {
+        phyBadge.textContent = `Scored ${phyRes.score}/${phyRes.maxMarks}`;
+        phyBadge.className = 'px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-300 text-slate-950';
+        phyBtn.classList.remove('hidden');
+      } else {
+        phyBadge.textContent = 'Not Attempted';
+        phyBadge.className = 'px-2.5 py-0.5 rounded-full text-xs font-bold bg-white/15';
+        phyBtn.classList.add('hidden');
+      }
+
+      const summaryBox = document.getElementById('homeSessionSummary');
+      const summaryText = document.getElementById('homeSessionText');
+      if (iqRes || phyRes) {
+        summaryBox.classList.remove('hidden');
+        const parts = [];
+        if (iqRes) parts.push(`IQ Test: ${iqRes.score}/20 (${iqRes.percent}%)`);
+        if (phyRes) parts.push(`Physics PYQ Test: ${phyRes.score}/20 (${phyRes.percent}%)`);
+        summaryText.textContent = parts.join('   •   ');
+      } else {
+        summaryBox.classList.add('hidden');
+      }
+    }
+
+    // ==================== TIMER ENGINE ====================
+    function stopTimer() {
+      if (state.timerHandle) {
+        clearInterval(state.timerHandle);
+        state.timerHandle = null;
+      }
+    }
+
+    function updateTimerUI() {
+      const display = document.getElementById('timerDisplay');
+      const box = document.getElementById('timerBox');
+      display.textContent = formatTime(state.secondsLeft);
+
+      box.classList.remove('bg-slate-100', 'border-slate-300', 'text-[#1e3a5f]', 'bg-amber-100', 'border-amber-400', 'text-amber-900', 'bg-rose-100', 'border-rose-500', 'text-rose-800', 'timer-urgent');
+      if (state.secondsLeft <= 60) {
+        box.classList.add('bg-rose-100', 'border-rose-500', 'text-rose-800', 'timer-urgent');
+      } else if (state.secondsLeft <= 300) {
+        box.classList.add('bg-amber-100', 'border-amber-400', 'text-amber-900');
+      } else {
+        box.classList.add('bg-slate-100', 'border-slate-300', 'text-[#1e3a5f]');
+      }
+    }
+
+    function startTimer() {
+      stopTimer();
+      updateTimerUI();
+      state.timerHandle = setInterval(() => {
+        state.secondsLeft -= 1;
+        updateTimerUI();
+        if (state.secondsLeft <= 0) {
+          stopTimer();
+          showToast('Time is up! Test submitted automatically.');
+          finalizeTest();
+        }
+      }, 1000);
+    }
+
+    // ==================== START & RENDER EXAM ====================
+    function startTest(testId) {
+      state.studentName = document.getElementById('studentNameInput').value.trim() || 'Airforce Aspirant';
+      state.studentBatch = document.getElementById('studentBatchInput').value.trim() || 'Group X Foundation';
+      persistState();
+
+      const test = TESTS[testId];
+      state.activeTestId = testId;
+      state.currentIndex = 0;
+      state.answers = {};
+      state.marked = {};
+      state.secondsLeft = test.durationSec;
+
+      document.getElementById('examTitleBadge').textContent = test.titleEn;
+      document.getElementById('examMarkingBadge').textContent = test.markingLabel;
+      document.getElementById('examStudentLabel').textContent = `Candidate: ${state.studentName}  |  Batch: ${state.studentBatch}`;
+
+      showView('exam');
+      renderQuestion();
+      renderPalette();
+      startTimer();
+    }
+
+    function renderQuestion() {
+      const test = TESTS[state.activeTestId];
+      const q = test.questions[state.currentIndex];
+      const total = test.questions.length;
+
+      document.getElementById('qNumberBadge').textContent = `Q${state.currentIndex + 1} / ${total}`;
+      document.getElementById('qDomainBadge').textContent = q.domain;
+      document.getElementById('qSourceBadge').textContent = q.tag;
+
+      const enEl = document.getElementById('qTextEn');
+      const hiEl = document.getElementById('qTextHi');
+      enEl.textContent = q.en;
+      hiEl.textContent = q.hi;
+      enEl.classList.toggle('hidden', state.lang === 'hi');
+      hiEl.classList.toggle('hidden', state.lang === 'en');
+
+      const visBox = document.getElementById('qVisualContainer');
+      if (q.visual) {
+        visBox.innerHTML = q.visual;
+        visBox.classList.remove('hidden');
+      } else {
+        visBox.innerHTML = '';
+        visBox.classList.add('hidden');
+      }
+
+      // Render Options
+      const optsBox = document.getElementById('optionsContainer');
+      optsBox.innerHTML = '';
+      const chosen = state.answers[state.currentIndex];
+
+      q.optsEn.forEach((optEn, idx) => {
+        const optHi = q.optsHi[idx];
+        const isSelected = chosen === idx;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = `text-left p-3.5 rounded-xl border-2 transition flex items-center gap-3 cursor-pointer ${
+          isSelected
+            ? 'border-[#1e3a5f] bg-blue-50/80 shadow-sm'
+            : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50'
+        }`;
+
+        let labelHtml = '';
+        if (state.lang === 'en') {
+          labelHtml = `<div class="font-semibold text-sm text-slate-800">${optEn}</div>`;
+        } else if (state.lang === 'hi') {
+          labelHtml = `<div class="font-semibold text-sm text-slate-800">${optHi}</div>`;
+        } else {
+          labelHtml = optEn === optHi
+            ? `<div class="font-semibold text-sm text-slate-800">${optEn}</div>`
+            : `<div class="font-semibold text-sm text-slate-800">${optEn}</div><div class="text-xs text-slate-500 mt-0.5">${optHi}</div>`;
+        }
+
+        const svgHtml = q.optVisuals ? `<div class="shrink-0">${q.optVisuals[idx]}</div>` : '';
+
+        btn.innerHTML = `
+          <span class="w-7 h-7 rounded-lg flex items-center justify-center font-extrabold text-xs shrink-0 ${
+            isSelected ? 'bg-[#1e3a5f] text-white' : 'bg-slate-100 text-slate-700'
+          }">${LETTERS[idx]}</span>
+          ${svgHtml}
+          <div class="min-w-0">${labelHtml}</div>
+        `;
+        btn.addEventListener('click', () => {
+          state.answers[state.currentIndex] = idx;
+          renderQuestion();
+          renderPalette();
+        });
+        optsBox.appendChild(btn);
+      });
+
+      // Mark for review button state
+      const markBtn = document.getElementById('markReviewBtn');
+      const isMarked = !!state.marked[state.currentIndex];
+      markBtn.textContent = isMarked ? 'Unmark Review' : 'Mark for Review';
+      markBtn.className = isMarked
+        ? 'px-3.5 py-2 rounded-xl border border-purple-600 bg-purple-600 text-white font-semibold text-xs sm:text-sm transition cursor-pointer'
+        : 'px-3.5 py-2 rounded-xl border border-purple-300 bg-purple-50 hover:bg-purple-100 text-purple-800 font-semibold text-xs sm:text-sm transition cursor-pointer';
+
+      // Prev / Next buttons
+      document.getElementById('prevQBtn').disabled = state.currentIndex === 0;
+      document.getElementById('prevQBtn').classList.toggle('opacity-40', state.currentIndex === 0);
+      document.getElementById('nextQBtn').textContent = state.currentIndex === total - 1 ? 'Review & Submit' : 'Save & Next →';
+
+      // Progress bar
+      const pct = Math.round(((state.currentIndex + 1) / total) * 100);
+      document.getElementById('examProgressBar').style.width = `${pct}%`;
+    }
+
+    function renderPalette() {
+      const test = TESTS[state.activeTestId];
+      const grid = document.getElementById('paletteGrid');
+      grid.innerHTML = '';
+
+      let ansCount = 0;
+      let markCount = 0;
+
+      test.questions.forEach((_, idx) => {
+        const isAns = state.answers[idx] !== undefined;
+        const isMarked = !!state.marked[idx];
+        const isCur = idx === state.currentIndex;
+
+        if (isAns) ansCount++;
+        if (isMarked) markCount++;
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = idx + 1;
+
+        let cls = 'h-9 rounded-lg font-bold text-xs transition cursor-pointer ';
+        if (isMarked) {
+          cls += 'bg-purple-600 text-white hover:bg-purple-700 ';
+        } else if (isAns) {
+          cls += 'bg-emerald-600 text-white hover:bg-emerald-700 ';
+        } else {
+          cls += 'bg-slate-100 text-slate-700 border border-slate-300 hover:bg-slate-200 ';
+        }
+        if (isCur) {
+          cls += 'ring-2 ring-offset-1 ring-[#1e3a5f] ';
+        }
+        btn.className = cls;
+        btn.addEventListener('click', () => {
+          state.currentIndex = idx;
+          renderQuestion();
+          renderPalette();
+        });
+        grid.appendChild(btn);
+      });
+
+      const total = test.questions.length;
+      document.getElementById('paletteCounter').textContent = `${ansCount} / ${total} Answered`;
+      document.getElementById('statAns').textContent = ansCount;
+      document.getElementById('statUnans').textContent = total - ansCount;
+      document.getElementById('statMarked').textContent = markCount;
+    }
+
+    // ==================== SUBMIT & EVALUATE ====================
+    function openSubmitModal() {
+      const test = TESTS[state.activeTestId];
+      const total = test.questions.length;
+      const ans = Object.keys(state.answers).length;
+      const marked = Object.keys(state.marked).filter(k => state.marked[k]).length;
+
+      document.getElementById('modalAnsCount').textContent = ans;
+      document.getElementById('modalUnansCount').textContent = total - ans;
+      document.getElementById('modalMarkedCount').textContent = marked;
+      document.getElementById('submitModal').classList.remove('hidden');
+    }
+
+    function finalizeTest() {
+      stopTimer();
+      document.getElementById('submitModal').classList.add('hidden');
+
+      const test = TESTS[state.activeTestId];
+      const total = test.questions.length;
+      const timeTakenSec = Math.max(1, test.durationSec - state.secondsLeft);
+
+      let correct = 0;
+      let wrong = 0;
+      let unattempted = 0;
+      const domainStats = {};
+
+      test.questions.forEach((q, idx) => {
+        if (!domainStats[q.domain]) {
+          domainStats[q.domain] = { total: 0, correct: 0, wrong: 0, unattempted: 0, missedQs: [] };
+        }
+        const d = domainStats[q.domain];
+        d.total++;
+
+        const chosen = state.answers[idx];
+        if (chosen === undefined) {
+          unattempted++;
+          d.unattempted++;
+          d.missedQs.push(`Q${q.id}`);
+        } else if (chosen === q.ans) {
+          correct++;
+          d.correct++;
+        } else {
+          wrong++;
+          d.wrong++;
+          d.missedQs.push(`Q${q.id}`);
+        }
+      });
+
+      const rawScore = (correct * test.posMark) - (wrong * test.negMark);
+      const score = Math.round(rawScore * 100) / 100;
+      const maxMarks = total * test.posMark;
+      const percent = Math.max(0, Math.round((score / maxMarks) * 100));
+      const attempted = correct + wrong;
+      const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+      const negDeducted = Math.round((wrong * test.negMark) * 100) / 100;
+
+      state.savedResults[test.id] = {
+        testId: test.id,
+        studentName: state.studentName,
+        studentBatch: state.studentBatch,
+        score,
+        maxMarks,
+        percent,
+        correct,
+        wrong,
+        unattempted,
+        accuracy,
+        negDeducted,
+        timeTakenSec,
+        answers: { ...state.answers },
+        domainStats,
+        completedAt: new Date().toLocaleString()
+      };
+      persistState();
+
+      state.reviewFilter = 'all';
+      showView('result');
+      renderResultView(test.id);
+    }
+
+    // ==================== RENDER RESULT & AREAS OF IMPROVEMENT ====================
+    function renderResultView(testId) {
+      const res = state.savedResults[testId];
+      if (!res) return;
+      const test = TESTS[testId];
+      state.activeTestId = testId;
+
+      document.getElementById('resTestTitle').textContent = state.lang === 'hi' ? test.titleHi : test.titleEn;
+      document.getElementById('resStudentMeta').textContent = `Candidate: ${res.studentName}  •  Batch: ${res.studentBatch}  •  Completed: ${res.completedAt}`;
+
+      document.getElementById('resScore').textContent = `${res.score} / ${res.maxMarks}`;
+      document.getElementById('resPercent').textContent = `${res.percent}%`;
+      document.getElementById('resCorrect').textContent = res.correct;
+      document.getElementById('resWrong').textContent = res.wrong;
+      document.getElementById('resAccuracy').textContent = `${res.accuracy}%`;
+      document.getElementById('resTimeTaken').textContent = formatTime(res.timeTakenSec);
+
+      // Performance Band
+      const bandBox = document.getElementById('resBandBox');
+      const bandTitle = document.getElementById('resBandTitle');
+      const bandDesc = document.getElementById('resBandDesc');
+      const negNote = document.getElementById('resNegNote');
+
+      bandBox.className = 'rounded-xl p-4 border flex flex-col sm:flex-row sm:items-center justify-between gap-3 ';
+      if (res.score >= 17) {
+        bandBox.className += 'bg-emerald-50 border-emerald-300 text-emerald-900';
+        bandTitle.textContent = 'Band 1: Exceptional Grasping Power (Fast-Track Airforce X Group)';
+        bandDesc.textContent = 'Strong foundational clarity and speed. Ready for full-length 70-question Airforce X Group mock papers.';
+      } else if (res.score >= 13) {
+        bandBox.className += 'bg-blue-50 border-blue-300 text-blue-900';
+        bandTitle.textContent = 'Band 2: Strong Base (Ready for Standard X Group Batch)';
+        bandDesc.textContent = 'Good conceptual grasp. Fix the specific weak domains below to push consistently into the 17+ zone.';
+      } else if (res.score >= 9) {
+        bandBox.className += 'bg-amber-50 border-amber-300 text-amber-900';
+        bandTitle.textContent = 'Band 3: Average Base (Needs Guided Practice)';
+        bandDesc.textContent = 'Core concepts need reinforcement. Focus on the priority weak topics listed below before timed mocks.';
+      } else {
+        bandBox.className += 'bg-rose-50 border-rose-300 text-rose-900';
+        bandTitle.textContent = 'Band 4: Foundation Focus (Start with Basic Drills)';
+        bandDesc.textContent = 'Build fundamentals step-by-step from Class 10–11 NCERT basics and daily 15-minute logic drills.';
+      }
+
+      negNote.textContent = test.negMark > 0
+        ? `Negative Marks Lost: −${res.negDeducted} (${res.wrong} wrong)`
+        : `No Negative Marking (${res.unattempted} unattempted)`;
+
+      // Switch Other Test Button
+      const otherId = testId === 'iq' ? 'physics' : 'iq';
+      const switchBtn = document.getElementById('switchOtherTestBtn');
+      switchBtn.textContent = otherId === 'physics' ? 'Take Physics PYQ Test →' : 'Take Mensa IQ Test →';
+      switchBtn.onclick = () => startTest(otherId);
+
+      // Render Topic Chart
+      renderTopicChart(res.domainStats);
+
+      // Render Areas of Improvement
+      renderImprovementPanel(test, res);
+
+      // Render Question Review
+      renderReviewList(test, res);
+    }
+
+    function renderTopicChart(domainStats) {
+      const ctx = document.getElementById('topicChart').getContext('2d');
+      if (state.chartInstance) {
+        state.chartInstance.destroy();
+      }
+      const labels = Object.keys(domainStats);
+      const dataPct = labels.map(k => Math.round((domainStats[k].correct / domainStats[k].total) * 100));
+      const bgColors = dataPct.map(p => p >= 80 ? '#059669' : p >= 60 ? '#d97706' : '#dc2626');
+
+      state.chartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [{
+            label: 'Accuracy (%)',
+            data: dataPct,
+            backgroundColor: bgColors,
+            borderRadius: 6,
+            barThickness: 22
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { min: 0, max: 100, ticks: { callback: v => v + '%' } },
+            y: { ticks: { font: { size: 11, weight: '600' } } }
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctxItem) => {
+                  const d = domainStats[labels[ctxItem.dataIndex]];
+                  return ` ${ctxItem.raw}% (${d.correct}/${d.total} correct)`;
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    function renderImprovementPanel(test, res) {
+      const container = document.getElementById('improvementList');
+      container.innerHTML = '';
+
+      const entries = Object.entries(res.domainStats).map(([domain, st]) => ({
+        domain,
+        ...st,
+        pct: Math.round((st.correct / st.total) * 100)
+      })).sort((a, b) => a.pct - b.pct);
+
+      const weak = entries.filter(e => e.pct < 60);
+      const moderate = entries.filter(e => e.pct >= 60 && e.pct < 80);
+      const strong = entries.filter(e => e.pct >= 80);
+
+      // Strategy alerts (Negative Marking / Unattempted)
+      if (test.negMark > 0 && res.negDeducted >= 1.0) {
+        const card = document.createElement('div');
+        card.className = 'p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-sm';
+        card.innerHTML = `
+          <div class="font-bold text-rose-800">Accuracy &amp; Negative Marking Alert (−${res.negDeducted} marks lost)</div>
+          <p class="text-xs text-rose-700 mt-1">You got ${res.wrong} questions wrong. In Airforce X Group, avoid blind guessing when unsure between 3+ options — skip to protect your score.</p>
+        `;
+        container.appendChild(card);
+      }
+
+      if (res.unattempted >= 5) {
+        const card = document.createElement('div');
+        card.className = 'p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-sm';
+        card.innerHTML = `
+          <div class="font-bold text-amber-900">Time &amp; Attempt Pacing (${res.unattempted} Unattempted)</div>
+          <p class="text-xs text-amber-800 mt-1">Aim to spend at most 60–75 seconds per question on the first pass, marking tough questions for review at the end.</p>
+        `;
+        container.appendChild(card);
+      }
+
+      // Weak & Moderate Domain Action Cards
+      const needsWork = [...weak, ...moderate];
+      if (needsWork.length === 0) {
+        const card = document.createElement('div');
+        card.className = 'p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-sm';
+        card.innerHTML = `
+          <div class="font-bold text-emerald-800">Outstanding! No Weak Domains Detected (All ≥ 80%)</div>
+          <p class="text-xs text-emerald-700 mt-1">Your fundamentals across every section are strong. Move on to full 70-question timed Airforce Group X mocks and reduce average time per question.</p>
+        `;
+        container.appendChild(card);
+      } else {
+        needsWork.forEach(item => {
+          const isPriority = item.pct < 60;
+          const adv = test.advice[item.domain] || { en: 'Review missed concepts and practice 15–20 similar PYQs.', hi: 'गलत प्रश्नों की अवधारणा दोहराएं और अभ्यास करें।' };
+          const card = document.createElement('div');
+          card.className = `p-3.5 rounded-xl border ${isPriority ? 'bg-rose-50/70 border-rose-200' : 'bg-amber-50/70 border-amber-200'}`;
+          card.innerHTML = `
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div class="font-bold text-sm ${isPriority ? 'text-rose-900' : 'text-amber-900'}">
+                ${isPriority ? 'Priority Focus:' : 'Needs Polish:'} ${item.domain}
+              </div>
+              <span class="px-2 py-0.5 rounded-full text-xs font-extrabold ${isPriority ? 'bg-rose-200 text-rose-900' : 'bg-amber-200 text-amber-900'}">
+                ${item.correct}/${item.total} (${item.pct}%)
+              </span>
+            </div>
+            <div class="text-xs text-slate-600 mt-1"><strong>Missed:</strong> ${item.missedQs.join(', ')}</div>
+            <p class="text-xs text-slate-700 mt-1.5">${adv.en}</p>
+            <p class="text-xs text-slate-500 mt-0.5">${adv.hi}</p>
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      // Strong Areas Chip Row
+      if (strong.length > 0) {
+        const strongBox = document.createElement('div');
+        strongBox.className = 'p-3 rounded-xl bg-emerald-50/70 border border-emerald-200';
+        strongBox.innerHTML = `
+          <div class="text-xs font-bold text-emerald-800 mb-1.5">Strong Areas / मजबूत विषय (≥ 80%)</div>
+          <div class="flex flex-wrap gap-1.5">
+            ${strong.map(s => `<span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-900 border border-emerald-300">${s.domain}: ${s.correct}/${s.total}</span>`).join('')}
+          </div>
+        `;
+        container.appendChild(strongBox);
+      }
+    }
+
+    function renderReviewList(test, res) {
+      // Update filter button styles
+      document.querySelectorAll('.rev-filter').forEach(btn => {
+        const f = btn.dataset.filter;
+        const active = f === state.reviewFilter;
+        btn.className = `rev-filter px-3 py-1.5 rounded-md transition cursor-pointer ${
+          active ? 'bg-[#1e3a5f] text-white' : 'text-slate-600 hover:text-slate-900'
+        }`;
+      });
+
+      const list = document.getElementById('reviewList');
+      list.innerHTML = '';
+
+      let shown = 0;
+      test.questions.forEach((q, idx) => {
+        const chosen = res.answers[idx];
+        const status = chosen === undefined ? 'unattempted' : chosen === q.ans ? 'correct' : 'wrong';
+
+        if (state.reviewFilter !== 'all' && state.reviewFilter !== status) return;
+        shown++;
+
+        const borderCls = status === 'correct'
+          ? 'border-emerald-200 bg-emerald-50/30'
+          : status === 'wrong'
+          ? 'border-rose-200 bg-rose-50/30'
+          : 'border-slate-200 bg-slate-50/50';
+
+        const statusBadge = status === 'correct'
+          ? '<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">Correct (+1)</span>'
+          : status === 'wrong'
+          ? `<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-100 text-rose-800">Incorrect (${test.negMark > 0 ? '−0.25' : '0'})</span>`
+          : '<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-200 text-slate-700">Unattempted (0)</span>';
+
+        const yourAnsText = chosen === undefined
+          ? 'Not Attempted'
+          : `(${LETTERS[chosen]}) ${q.optsEn[chosen]}`;
+        const correctAnsText = `(${LETTERS[q.ans]}) ${q.optsEn[q.ans]}`;
+
+        const card = document.createElement('div');
+        card.className = `p-4 rounded-xl border ${borderCls} space-y-2 print-break-inside-avoid`;
+        card.innerHTML = `
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <span class="font-extrabold text-sm text-[#1e3a5f]">Q${q.id}.</span>
+              <span class="text-xs font-semibold text-slate-500">${q.domain} &bull; ${q.tag}</span>
+            </div>
+            ${statusBadge}
+          </div>
+          ${state.lang !== 'hi' ? `<div class="font-semibold text-sm text-slate-900">${q.en}</div>` : ''}
+          ${state.lang !== 'en' ? `<div class="text-xs sm:text-sm text-slate-600">${q.hi}</div>` : ''}
+          ${q.visual ? `<div class="svg-box inline-block p-2 bg-white rounded-lg border border-slate-200">${q.visual}</div>` : ''}
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs pt-1">
+            <div class="p-2 rounded-lg bg-white border border-slate-200">
+              <span class="text-slate-500 font-semibold">Your Answer:</span>
+              <span class="font-bold ${status === 'correct' ? 'text-emerald-700' : status === 'wrong' ? 'text-rose-700' : 'text-slate-500'} ml-1">${yourAnsText}</span>
+            </div>
+            <div class="p-2 rounded-lg bg-white border border-emerald-200">
+              <span class="text-slate-500 font-semibold">Correct Answer:</span>
+              <span class="font-bold text-emerald-700 ml-1">${correctAnsText}</span>
+            </div>
+          </div>
+          <div class="text-xs text-slate-700 bg-white/80 p-2.5 rounded-lg border border-slate-200">
+            <strong>Explanation / व्याख्या:</strong> ${q.expEn} ${q.expHi ? `<span class="text-slate-500"> / ${q.expHi}</span>` : ''}
+          </div>
+        `;
+        list.appendChild(card);
+      });
+
+      if (shown === 0) {
+        list.innerHTML = `<div class="text-center py-8 text-sm text-slate-500">No questions match the selected filter.</div>`;
+      }
+    }
+
+    // ==================== EVENT WIRING ====================
+    function init() {
+      loadSavedState();
+      document.getElementById('studentNameInput').value = state.studentName;
+      document.getElementById('studentBatchInput').value = state.studentBatch;
+
+      // Language buttons
+      document.getElementById('langBtnBoth').addEventListener('click', () => setLang('both'));
+      document.getElementById('langBtnEn').addEventListener('click', () => setLang('en'));
+      document.getElementById('langBtnHi').addEventListener('click', () => setLang('hi'));
+      setLang('both');
+
+      // Navigation & Home buttons
+      document.getElementById('navHomeBtn').addEventListener('click', () => showView('home'));
+      document.getElementById('startIqBtn').addEventListener('click', () => startTest('iq'));
+      document.getElementById('startPhyBtn').addEventListener('click', () => startTest('physics'));
+
+      document.getElementById('viewIqResultBtn').addEventListener('click', () => {
+        showView('result');
+        renderResultView('iq');
+      });
+      document.getElementById('viewPhyResultBtn').addEventListener('click', () => {
+        showView('result');
+        renderResultView('physics');
+      });
+      document.getElementById('resetSessionBtn').addEventListener('click', () => {
+        state.savedResults = {};
+        persistState();
+        renderHomeBadges();
+        showToast('Saved attempts cleared.');
+      });
+
+      // Exam controls
+      document.getElementById('prevQBtn').addEventListener('click', () => {
+        if (state.currentIndex > 0) {
+          state.currentIndex--;
+          renderQuestion();
+          renderPalette();
+        }
+      });
+      document.getElementById('nextQBtn').addEventListener('click', () => {
+        const total = TESTS[state.activeTestId].questions.length;
+        if (state.currentIndex < total - 1) {
+          state.currentIndex++;
+          renderQuestion();
+          renderPalette();
+        } else {
+          openSubmitModal();
+        }
+      });
+      document.getElementById('markReviewBtn').addEventListener('click', () => {
+        state.marked[state.currentIndex] = !state.marked[state.currentIndex];
+        renderQuestion();
+        renderPalette();
+      });
+      document.getElementById('clearResponseBtn').addEventListener('click', () => {
+        delete state.answers[state.currentIndex];
+        renderQuestion();
+        renderPalette();
+      });
+
+      // Submit modal
+      document.getElementById('openSubmitModalBtn').addEventListener('click', openSubmitModal);
+      document.getElementById('cancelSubmitBtn').addEventListener('click', () => {
+        document.getElementById('submitModal').classList.add('hidden');
+      });
+      document.getElementById('confirmSubmitBtn').addEventListener('click', finalizeTest);
+
+      // Result controls
+      document.getElementById('printResultBtn').addEventListener('click', () => window.print());
+      document.getElementById('retakeTestBtn').addEventListener('click', () => startTest(state.activeTestId));
+
+      document.querySelectorAll('.rev-filter').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.reviewFilter = btn.dataset.filter;
+          renderReviewList(TESTS[state.activeTestId], state.savedResults[state.activeTestId]);
+        });
+      });
+
+      // Keyboard navigation during exam
+      document.addEventListener('keydown', (e) => {
+        if (state.view !== 'exam') return;
+        if (!document.getElementById('submitModal').classList.contains('hidden')) return;
+        const key = e.key.toUpperCase();
+        const optMap = { '1': 0, '2': 1, '3': 2, '4': 3, 'A': 0, 'B': 1, 'C': 2, 'D': 3 };
+        if (optMap[key] !== undefined) {
+          state.answers[state.currentIndex] = optMap[key];
+          renderQuestion();
+          renderPalette();
+        } else if (e.key === 'ArrowRight') {
+          const total = TESTS[state.activeTestId].questions.length;
+          if (state.currentIndex < total - 1) {
+            state.currentIndex++;
+            renderQuestion();
+            renderPalette();
+          }
+        } else if (e.key === 'ArrowLeft') {
+          if (state.currentIndex > 0) {
+            state.currentIndex--;
+            renderQuestion();
+            renderPalette();
+          }
+        }
+      });
+
+      renderHomeBadges();
+    }
+
+    init();
+  </script>
+</body>
+</html>
