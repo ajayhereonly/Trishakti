@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Airforce Group X Physics Test — Units & Dimensions (मात्रक एवं विमाएँ)</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', 'Noto Sans Devanagari', system-ui, -apple-system, sans-serif;
+    }
+    .hindi {
+      font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { background: #ffffff !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-900 min-h-screen flex flex-col">
+
+  <!-- Top Brand Header -->
+  <header class="bg-[#0B1F3A] text-white shadow-md sticky top-0 z-30 no-print">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3 min-w-0">
+        <div class="w-10 h-10 rounded-lg bg-amber-500/20 border border-amber-400/60 flex items-center justify-center shrink-0">
+          <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+          </svg>
+        </div>
+        <div class="truncate">
+          <div class="text-xs font-bold tracking-wider text-amber-300 uppercase">Trishakti Defence Academy · Bhim</div>
+          <h1 class="text-sm sm:text-base font-extrabold leading-tight truncate">Airforce Group X Physics — Units &amp; Dimensions</h1>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <!-- Language Switcher -->
+        <div class="bg-slate-800/80 border border-slate-700 rounded-lg p-0.5 flex text-xs font-semibold">
+          <button id="langBothBtn" type="button" class="px-2.5 py-1 rounded-md bg-blue-600 text-white transition">Both</button>
+          <button id="langEnBtn" type="button" class="px-2.5 py-1 rounded-md text-slate-300 hover:text-white transition">EN</button>
+          <button id="langHiBtn" type="button" class="px-2.5 py-1 rounded-md text-slate-300 hover:text-white transition hindi">हिन्दी</button>
+        </div>
+
+        <!-- Live Timer (Visible only during Exam) -->
+        <div id="headerTimerBox" class="hidden items-center gap-1.5 bg-slate-800 border border-slate-600 px-3 py-1.5 rounded-lg font-mono text-sm font-bold text-amber-300">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 7v5l3 2"/>
+          </svg>
+          <span id="timerDisplay">20:00</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== VIEW 1: START / INSTRUCTIONS SCREEN ==================== -->
+  <main id="startView" class="flex-1 max-w-4xl w-full mx-auto px-4 py-6 sm:py-10">
+    <div class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
+      <div class="bg-gradient-to-r from-[#0B1F3A] via-[#132E52] to-[#1D63B8] text-white p-6 sm:p-8">
+        <span class="inline-block bg-amber-500/20 border border-amber-400/60 text-amber-300 text-xs font-bold px-3 py-1 rounded-full mb-3">
+          INDIAN AIR FORCE · AGNIVEER VAYU (GROUP X — SCIENCE)
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold leading-tight">
+          Chapter 01 Test: Units &amp; Dimensions
+        </h2>
+        <p class="text-blue-100 text-base sm:text-lg font-medium mt-1 hindi">
+          अध्याय 01 टेस्ट: मात्रक एवं विमाएँ (बेसिक + PYQs)
+        </p>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
+          <div class="bg-white/10 rounded-xl p-3 border border-white/15">
+            <div class="text-xs text-blue-200">Total Questions</div>
+            <div class="text-xl font-extrabold">20 MCQs</div>
+          </div>
+          <div class="bg-white/10 rounded-xl p-3 border border-white/15">
+            <div class="text-xs text-blue-200">Duration</div>
+            <div class="text-xl font-extrabold">20 Mins</div>
+          </div>
+          <div class="bg-white/10 rounded-xl p-3 border border-white/15">
+            <div class="text-xs text-blue-200">Correct Answer</div>
+            <div class="text-xl font-extrabold text-emerald-300">+1.00</div>
+          </div>
+          <div class="bg-white/10 rounded-xl p-3 border border-white/15">
+            <div class="text-xs text-blue-200">Negative Marking</div>
+            <div class="text-xl font-extrabold text-rose-300">&minus;0.25</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-6 sm:p-8 space-y-6">
+        <!-- Student Details -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="studentName" class="block text-sm font-semibold text-slate-700 mb-1">
+              Student Name / विद्यार्थी का नाम
+            </label>
+            <input id="studentName" type="text" placeholder="e.g., Rahul Sharma"
+              class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm">
+          </div>
+          <div>
+            <label for="studentRoll" class="block text-sm font-semibold text-slate-700 mb-1">
+              Roll No. / Batch (Optional)
+            </label>
+            <input id="studentRoll" type="text" placeholder="e.g., X-Batch-01"
+              class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm">
+          </div>
+        </div>
+
+        <!-- Mode & Marking Options -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+            <div class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Test Mode / परीक्षा मोड</div>
+            <div class="space-y-2">
+              <label class="flex items-start gap-2.5 cursor-pointer">
+                <input type="radio" name="testMode" value="exam" checked class="mt-1 accent-blue-600">
+                <div>
+                  <div class="text-sm font-bold text-slate-800">Real CBT Exam Mode (20 Min Timer)</div>
+                  <div class="text-xs text-slate-500 hindi">असली एयरफोर्स CBT पैटर्न — अंत में परिणाम व हल देखें</div>
+                </div>
+              </label>
+              <label class="flex items-start gap-2.5 cursor-pointer">
+                <input type="radio" name="testMode" value="practice" class="mt-1 accent-blue-600">
+                <div>
+                  <div class="text-sm font-bold text-slate-800">Practice Mode (Instant Answer)</div>
+                  <div class="text-xs text-slate-500 hindi">अभ्यास मोड — हर प्रश्न का तुरंत सही उत्तर और व्याख्या देखें</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+            <div class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Marking Rule / अंक योजना</div>
+            <label class="flex items-start gap-2.5 cursor-pointer">
+              <input id="negMarkingToggle" type="checkbox" checked class="mt-1 w-4 h-4 accent-blue-600">
+              <div>
+                <div class="text-sm font-bold text-slate-800">Enable &minus;0.25 Negative Marking</div>
+                <div class="text-xs text-slate-500 hindi">Agniveer Vayu नियम: सही पर +1, गलत पर &minus;0.25, छोड़ने पर 0</div>
+              </div>
+            </label>
+            <div class="mt-3 pt-3 border-t border-slate-200 text-xs text-slate-600">
+              Includes <strong>10 Basic Concept MCQs</strong> + <strong>10 Airforce Group X PYQs</strong>.
+            </div>
+          </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="bg-blue-50/70 border border-blue-200 rounded-xl p-4 text-sm text-slate-700 space-y-1.5">
+          <div class="font-bold text-[#0B1F3A]">Instructions / निर्देश:</div>
+          <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm">
+            <li>All 20 questions are objective with 4 options (A, B, C, D) in both English and Hindi.</li>
+            <li>You can switch between questions anytime using the Question Palette or Mark for Review.</li>
+            <li class="hindi">आप ऊपर दिए गए बटन से भाषा (Both / EN / हिन्दी) कभी भी बदल सकते हैं।</li>
+          </ul>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
+          <div id="lastScoreBadge" class="text-xs text-slate-500"></div>
+          <button id="startTestBtn" type="button"
+            class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#1D63B8] hover:bg-[#154E96] text-white font-bold text-base shadow-md transition flex items-center justify-center gap-2">
+            <span>Start Test / टेस्ट शुरू करें</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==================== VIEW 2: LIVE CBT EXAM SCREEN ==================== -->
+  <main id="examView" class="hidden flex-1 max-w-6xl w-full mx-auto px-4 py-5">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+
+      <!-- Left: Active Question Area -->
+      <section class="lg:col-span-8 bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
+        <!-- Question Top Strip -->
+        <div class="bg-slate-50 border-b border-slate-200 px-5 py-3 flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span id="qNumberBadge" class="bg-[#0B1F3A] text-white text-xs font-extrabold px-3 py-1 rounded-md">Q 1 / 20</span>
+            <span id="qTopicBadge" class="bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-1 rounded-md">SI Units</span>
+            <span id="qPyqBadge" class="hidden bg-amber-100 text-amber-800 border border-amber-300 text-xs font-bold px-2.5 py-1 rounded-md">Airforce X PYQ</span>
+          </div>
+          <div id="qMarksBadge" class="text-xs font-semibold text-slate-500">+1 / &minus;0.25</div>
+        </div>
+
+        <!-- Question Text & Options -->
+        <div class="p-5 sm:p-6 space-y-5">
+          <div class="space-y-2">
+            <div id="qTextEn" class="text-base sm:text-lg font-bold text-slate-900 leading-snug"></div>
+            <div id="qTextHi" class="text-base sm:text-lg font-semibold text-[#1E3A5F] leading-snug hindi"></div>
+          </div>
+
+          <div id="optionsContainer" class="space-y-3"></div>
+
+          <!-- Instant Feedback (Practice Mode Only) -->
+          <div id="practiceFeedback" class="hidden rounded-xl p-4 text-sm border"></div>
+        </div>
+
+        <!-- Bottom Action Bar -->
+        <div class="bg-slate-50 border-t border-slate-200 px-5 py-3.5 flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <button id="prevBtn" type="button"
+              class="px-3.5 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 text-sm font-semibold transition disabled:opacity-40">
+              &larr; Prev
+            </button>
+            <button id="clearBtn" type="button"
+              class="px-3.5 py-2 rounded-lg border border-slate-300 bg-white hover:bg-rose-50 hover:text-rose-700 hover:border-rose-300 text-slate-600 text-sm font-semibold transition">
+              Clear
+            </button>
+          </div>
+          <div class="flex items-center gap-2">
+            <button id="reviewBtn" type="button"
+              class="px-3.5 py-2 rounded-lg border border-purple-300 bg-purple-50 hover:bg-purple-100 text-purple-800 text-sm font-semibold transition">
+              Mark Review
+            </button>
+            <button id="nextBtn" type="button"
+              class="px-5 py-2 rounded-lg bg-[#1D63B8] hover:bg-[#154E96] text-white text-sm font-bold shadow-sm transition">
+              Save &amp; Next &rarr;
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right: Question Palette & Submit -->
+      <aside class="lg:col-span-4 bg-white rounded-2xl shadow-md border border-slate-200 p-5 space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+          <div>
+            <div class="text-sm font-extrabold text-[#0B1F3A]">Question Palette</div>
+            <div id="paletteStudentInfo" class="text-xs text-slate-500">Candidate</div>
+          </div>
+          <span id="answeredCountBadge" class="text-xs font-bold bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full">0 / 20 Done</span>
+        </div>
+
+        <!-- Palette Grid -->
+        <div id="paletteGrid" class="grid grid-cols-5 gap-2"></div>
+
+        <!-- Legend -->
+        <div class="grid grid-cols-2 gap-2 text-xs text-slate-600 pt-2 border-t border-slate-200">
+          <div class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded bg-emerald-600 inline-block"></span> Answered (<span id="legendAns">0</span>)</div>
+          <div class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded bg-slate-200 border border-slate-300 inline-block"></span> Unanswered (<span id="legendUnans">20</span>)</div>
+          <div class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded bg-purple-600 inline-block"></span> Review (<span id="legendRev">0</span>)</div>
+          <div class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded bg-blue-600 inline-block"></span> Current</div>
+        </div>
+
+        <button id="openSubmitModalBtn" type="button"
+          class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-600 text-[#0B1F3A] font-extrabold text-sm shadow-sm transition">
+          Submit Test / टेस्ट सबमिट करें
+        </button>
+      </aside>
+    </div>
+  </main>
+
+  <!-- ==================== VIEW 3: RESULT & ANALYSIS SCREEN ==================== -->
+  <main id="resultView" class="hidden flex-1 max-w-5xl w-full mx-auto px-4 py-6 space-y-6">
+    <!-- Top Scorecard -->
+    <div class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
+      <div class="bg-gradient-to-r from-[#0B1F3A] to-[#1D63B8] text-white p-6 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <div class="text-xs uppercase tracking-wider text-amber-300 font-bold">Test Performance Report · परिणाम पत्र</div>
+          <h2 id="resStudentHeading" class="text-2xl font-extrabold mt-1">Result Summary</h2>
+          <p id="resMetaLine" class="text-sm text-blue-100 mt-0.5"></p>
+        </div>
+        <div id="resStatusBadge" class="px-4 py-2 rounded-xl font-extrabold text-sm border"></div>
+      </div>
+
+      <div class="p-6 grid grid-cols-2 sm:grid-cols-5 gap-3">
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-3.5 text-center">
+          <div class="text-xs font-semibold text-blue-700">Final Score</div>
+          <div id="resScore" class="text-2xl font-extrabold text-[#0B1F3A] mt-0.5">0 / 20</div>
+        </div>
+        <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3.5 text-center">
+          <div class="text-xs font-semibold text-emerald-700">Correct (+1)</div>
+          <div id="resCorrect" class="text-2xl font-extrabold text-emerald-700 mt-0.5">0</div>
+        </div>
+        <div class="bg-rose-50 border border-rose-200 rounded-xl p-3.5 text-center">
+          <div class="text-xs font-semibold text-rose-700">Wrong</div>
+          <div id="resWrong" class="text-2xl font-extrabold text-rose-700 mt-0.5">0</div>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-center">
+          <div class="text-xs font-semibold text-slate-600">Accuracy</div>
+          <div id="resAccuracy" class="text-2xl font-extrabold text-slate-800 mt-0.5">0%</div>
+        </div>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-3.5 text-center col-span-2 sm:col-span-1">
+          <div class="text-xs font-semibold text-amber-800">Time Taken</div>
+          <div id="resTime" class="text-2xl font-extrabold text-amber-900 mt-0.5">00:00</div>
+        </div>
+      </div>
+
+      <!-- Charts & Topic Breakdown -->
+      <div class="px-6 pb-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+          <div class="text-sm font-bold text-[#0B1F3A] mb-2">Attempt Breakdown</div>
+          <div class="relative h-56">
+            <canvas id="resultChart"></canvas>
+          </div>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-3">
+          <div class="text-sm font-bold text-[#0B1F3A]">Topic-Wise Accuracy (विषयवार प्रदर्शन)</div>
+          <div id="topicBreakdown" class="space-y-2.5"></div>
+        </div>
+      </div>
+
+      <div class="bg-slate-50 border-t border-slate-200 px-6 py-4 flex flex-wrap items-center justify-between gap-3 no-print">
+        <button id="retakeBtn" type="button"
+          class="px-5 py-2.5 rounded-xl bg-[#1D63B8] hover:bg-[#154E96] text-white font-bold text-sm transition">
+          Retake Test / फिर से टेस्ट दें
+        </button>
+        <button id="printResultBtn" type="button"
+          class="px-5 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-800 font-bold text-sm transition">
+          Print Result / प्रिंट करें
+        </button>
+      </div>
+    </div>
+
+    <!-- Detailed Solutions Review -->
+    <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-6 space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
+        <div>
+          <h3 class="text-lg font-extrabold text-[#0B1F3A]">Detailed Bilingual Solutions <span class="hindi text-blue-700">(विस्तृत उत्तर एवं व्याख्या)</span></h3>
+        </div>
+        <div class="flex flex-wrap gap-1.5 text-xs font-bold no-print" id="solutionFilters">
+          <button type="button" data-filter="all" class="filter-btn px-3 py-1.5 rounded-lg bg-[#0B1F3A] text-white">All (20)</button>
+          <button type="button" data-filter="wrong" class="filter-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200">Wrong</button>
+          <button type="button" data-filter="correct" class="filter-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200">Correct</button>
+          <button type="button" data-filter="unattempted" class="filter-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200">Skipped</button>
+          <button type="button" data-filter="pyq" class="filter-btn px-3 py-1.5 rounded-lg bg-amber-100 text-amber-800 hover:bg-amber-200">PYQs Only</button>
+        </div>
+      </div>
+
+      <div id="solutionsList" class="space-y-4"></div>
+    </div>
+  </main>
+
+  <!-- ==================== IN-PAGE SUBMIT CONFIRMATION MODAL ==================== -->
+  <div id="submitModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 no-print">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-4 border border-slate-200">
+      <h3 class="text-lg font-extrabold text-[#0B1F3A]">Submit Test? / क्या आप टेस्ट सबमिट करना चाहते हैं?</h3>
+      <div id="submitModalStats" class="grid grid-cols-3 gap-2 text-center text-xs">
+        <div class="bg-emerald-50 border border-emerald-200 rounded-lg p-2.5">
+          <div class="text-emerald-700 font-semibold">Answered</div>
+          <div id="modalAns" class="text-lg font-extrabold text-emerald-800">0</div>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 rounded-lg p-2.5">
+          <div class="text-slate-600 font-semibold">Skipped</div>
+          <div id="modalUnans" class="text-lg font-extrabold text-slate-800">20</div>
+        </div>
+        <div class="bg-purple-50 border border-purple-200 rounded-lg p-2.5">
+          <div class="text-purple-700 font-semibold">Marked</div>
+          <div id="modalRev" class="text-lg font-extrabold text-purple-800">0</div>
+        </div>
+      </div>
+      <p class="text-sm text-slate-600">Once submitted, your answers will be evaluated and detailed solutions will be displayed.</p>
+      <div class="flex justify-end gap-2 pt-2">
+        <button id="cancelSubmitBtn" type="button"
+          class="px-4 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 text-sm font-semibold">
+          Continue Test
+        </button>
+        <button id="confirmSubmitBtn" type="button"
+          class="px-5 py-2 rounded-lg bg-[#1D63B8] hover:bg-[#154E96] text-white text-sm font-bold">
+          Yes, Submit
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 py-3 text-center text-xs text-slate-500 no-print">
+    <strong>Trishakti Defence Academy, Bhim (Rajasthan)</strong> · Airforce Group X (Agniveer Vayu) Physics Practice Portal
+  </footer>
+
+  <script>
+    // ==================== 20 EXAM-RELEVANT BASIC + PYQ QUESTIONS ====================
+    const QUESTIONS = [
+      {
+        id: 1,
+        topic: "SI Units",
+        pyq: false,
+        en: "How many fundamental (base) quantities are there in the SI system?",
+        hi: "SI पद्धति में कुल कितनी मूल (Fundamental) भौतिक राशियाँ होती हैं?",
+        options: [
+          { en: "5", hi: "5" },
+          { en: "7", hi: "7" },
+          { en: "9", hi: "9" },
+          { en: "3", hi: "3" }
+        ],
+        ans: 1,
+        expEn: "SI system has 7 fundamental quantities (Length, Mass, Time, Current, Temperature, Luminous Intensity, Amount of Substance) and 2 supplementary quantities.",
+        expHi: "SI पद्धति में 7 मूल राशियाँ तथा 2 पूरक राशियाँ (समतल कोण व घन कोण) होती हैं।"
+      },
+      {
+        id: 2,
+        topic: "SI Units",
+        pyq: false,
+        en: "What is the SI unit of Luminous Intensity?",
+        hi: "ज्योति तीव्रता (Luminous Intensity) का SI मात्रक क्या है?",
+        options: [
+          { en: "Lumen", hi: "ल्यूमेन" },
+          { en: "Lux", hi: "लक्स" },
+          { en: "Candela", hi: "कैंडेला" },
+          { en: "Watt", hi: "वाट" }
+        ],
+        ans: 2,
+        expEn: "Candela (cd) is the SI base unit of luminous intensity.",
+        expHi: "ज्योति तीव्रता का SI मूल मात्रक कैंडेला (cd) होता है।"
+      },
+      {
+        id: 3,
+        topic: "Practical Units",
+        pyq: true,
+        pyqTag: "Airforce X · Repeated PYQ",
+        en: "Light Year is a unit of:",
+        hi: "प्रकाश वर्ष (Light Year) किसका मात्रक है?",
+        options: [
+          { en: "Time", hi: "समय" },
+          { en: "Speed of light", hi: "प्रकाश की चाल" },
+          { en: "Distance", hi: "दूरी" },
+          { en: "Intensity of light", hi: "प्रकाश की तीव्रता" }
+        ],
+        ans: 2,
+        expEn: "1 Light Year is the distance travelled by light in vacuum in 1 year (1 ly = 9.46 × 10¹⁵ m).",
+        expHi: "प्रकाश वर्ष दूरी का मात्रक है। 1 प्रकाश वर्ष = 9.46 × 10¹⁵ मीटर होता है।"
+      },
+      {
+        id: 4,
+        topic: "Practical Units",
+        pyq: false,
+        en: "Which of the following is the largest unit of distance?",
+        hi: "निम्नलिखित में से दूरी का सबसे बड़ा मात्रक कौन-सा है?",
+        options: [
+          { en: "Astronomical Unit (AU)", hi: "खगोलीय इकाई (AU)" },
+          { en: "Light Year", hi: "प्रकाश वर्ष" },
+          { en: "Parsec", hi: "पारसेक" },
+          { en: "Kilometre", hi: "किलोमीटर" }
+        ],
+        ans: 2,
+        expEn: "1 Parsec = 3.08 × 10¹⁶ m = 3.26 Light Years, making it the largest practical unit of astronomical distance.",
+        expHi: "पारसेक दूरी का सबसे बड़ा मात्रक है। 1 पारसेक = 3.26 प्रकाश वर्ष = 3.08 × 10¹⁶ मीटर।"
+      },
+      {
+        id: 5,
+        topic: "SI Units",
+        pyq: true,
+        pyqTag: "Airforce X · Jul 2022",
+        en: "The unit of energy in the MKS system is:",
+        hi: "MKS पद्धति में ऊर्जा का मात्रक क्या है?",
+        options: [
+          { en: "Volt", hi: "वोल्ट" },
+          { en: "Erg", hi: "अर्ग" },
+          { en: "Ohm", hi: "ओम" },
+          { en: "Joule", hi: "जूल" }
+        ],
+        ans: 3,
+        expEn: "In MKS and SI systems, the unit of work and energy is Joule (1 J = 10⁷ erg in CGS).",
+        expHi: "MKS व SI पद्धति में कार्य और ऊर्जा का मात्रक जूल (Joule) होता है (CGS में अर्ग)।"
+      },
+      {
+        id: 6,
+        topic: "Practical Units",
+        pyq: false,
+        en: "1 Newton (N) is equal to how many dynes?",
+        hi: "1 न्यूटन (N) कितने डाइन (dyne) के बराबर होता है?",
+        options: [
+          { en: "10³ dyne", hi: "10³ डाइन" },
+          { en: "10⁵ dyne", hi: "10⁵ डाइन" },
+          { en: "10⁷ dyne", hi: "10⁷ डाइन" },
+          { en: "10⁻⁵ dyne", hi: "10⁻⁵ डाइन" }
+        ],
+        ans: 1,
+        expEn: "1 N = 1 kg·m/s² = (10³ g)(10² cm)/s² = 10⁵ g·cm/s² = 10⁵ dyne.",
+        expHi: "1 न्यूटन = 10⁵ डाइन होता है (तथा 1 जूल = 10⁷ अर्ग)।"
+      },
+      {
+        id: 7,
+        topic: "Practical Units",
+        pyq: false,
+        en: "1 Fermi (fm), used to measure nuclear size, is equal to:",
+        hi: "नाभिक का आकार मापने के लिए प्रयुक्त 1 फर्मी (fm) बराबर होता है:",
+        options: [
+          { en: "10⁻¹⁰ m", hi: "10⁻¹⁰ मीटर" },
+          { en: "10⁻¹² m", hi: "10⁻¹² मीटर" },
+          { en: "10⁻¹⁵ m", hi: "10⁻¹⁵ मीटर" },
+          { en: "10⁻⁹ m", hi: "10⁻⁹ मीटर" }
+        ],
+        ans: 2,
+        expEn: "1 Fermi (1 fm) = 10⁻¹⁵ m, whereas 1 Angstrom (Å) = 10⁻¹⁰ m.",
+        expHi: "1 फर्मी = 10⁻¹⁵ मीटर होता है (जबकि 1 एंग्स्ट्रॉम = 10⁻¹⁰ मीटर)।"
+      },
+      {
+        id: 8,
+        topic: "Dimensional Formulae",
+        pyq: false,
+        en: "What is the dimensional formula of Force (F)?",
+        hi: "बल (Force) का विमीय सूत्र क्या होता है?",
+        options: [
+          { en: "[M¹ L¹ T⁻¹]", hi: "[M¹ L¹ T⁻¹]" },
+          { en: "[M¹ L¹ T⁻²]", hi: "[M¹ L¹ T⁻²]" },
+          { en: "[M¹ L² T⁻²]", hi: "[M¹ L² T⁻²]" },
+          { en: "[M¹ L⁻¹ T⁻²]", hi: "[M¹ L⁻¹ T⁻²]" }
+        ],
+        ans: 1,
+        expEn: "Force = Mass × Acceleration = [M] × [LT⁻²] = [M¹ L¹ T⁻²].",
+        expHi: "बल = द्रव्यमान × त्वरण = [M] × [LT⁻²] = [M¹ L¹ T⁻²]।"
+      },
+      {
+        id: 9,
+        topic: "Dimensional Formulae",
+        pyq: true,
+        pyqTag: "Airforce X · 2021 & 2022",
+        en: "The dimensional formula for Angular Momentum (L) is:",
+        hi: "कोणीय संवेग (Angular Momentum) का विमीय सूत्र है:",
+        options: [
+          { en: "[M¹ L² T⁻²]", hi: "[M¹ L² T⁻²]" },
+          { en: "[M¹ L² T⁻¹]", hi: "[M¹ L² T⁻¹]" },
+          { en: "[M⁰ L² T⁻²]", hi: "[M⁰ L² T⁻²]" },
+          { en: "[M¹ L¹ T⁻¹]", hi: "[M¹ L¹ T⁻¹]" }
+        ],
+        ans: 1,
+        expEn: "Angular Momentum L = m·v·r = [M][LT⁻¹][L] = [M¹ L² T⁻¹]. Same as Planck's constant h.",
+        expHi: "कोणीय संवेग L = mvr = [M][LT⁻¹][L] = [M¹ L² T⁻¹] (प्लांक नियतांक के समान)।"
+      },
+      {
+        id: 10,
+        topic: "Dimensional Formulae",
+        pyq: true,
+        pyqTag: "Airforce X · PYQ",
+        en: "The dimensional formula of Universal Gravitational Constant (G) is:",
+        hi: "सार्वत्रिक गुरुत्वाकर्षण नियतांक (G) का विमीय सूत्र है:",
+        options: [
+          { en: "[M⁻² L² T⁻²]", hi: "[M⁻² L² T⁻²]" },
+          { en: "[M⁻¹ L³ T⁻²]", hi: "[M⁻¹ L³ T⁻²]" },
+          { en: "[M¹ L⁻¹ T⁻²]", hi: "[M¹ L⁻¹ T⁻²]" },
+          { en: "[M¹ L³ T⁻²]", hi: "[M¹ L³ T⁻²]" }
+        ],
+        ans: 1,
+        expEn: "From F = G·m₁m₂/r², G = F·r²/(m₁m₂) = [MLT⁻²][L²]/[M²] = [M⁻¹ L³ T⁻²].",
+        expHi: "G = Fr²/(m₁m₂) = [MLT⁻²][L²]/[M²] = [M⁻¹ L³ T⁻²]।"
+      },
+      {
+        id: 11,
+        topic: "Dimensional Formulae",
+        pyq: false,
+        en: "What is the dimensional formula of Power (P)?",
+        hi: "शक्ति (Power) का विमीय सूत्र क्या है?",
+        options: [
+          { en: "[M¹ L² T⁻²]", hi: "[M¹ L² T⁻²]" },
+          { en: "[M¹ L² T⁻³]", hi: "[M¹ L² T⁻³]" },
+          { en: "[M¹ L¹ T⁻³]", hi: "[M¹ L¹ T⁻³]" },
+          { en: "[M¹ L² T⁻¹]", hi: "[M¹ L² T⁻¹]" }
+        ],
+        ans: 1,
+        expEn: "Power = Work / Time = [ML²T⁻²] / [T] = [M¹ L² T⁻³].",
+        expHi: "शक्ति = कार्य / समय = [ML²T⁻²] / [T] = [M¹ L² T⁻³]।"
+      },
+      {
+        id: 12,
+        topic: "SI Units",
+        pyq: true,
+        pyqTag: "Airforce X · PYQ",
+        en: "'Pascal-Second' (Pa·s) is the SI unit of:",
+        hi: "'पास्कल-सेकंड' (Pa·s) किस भौतिक राशि का SI मात्रक है?",
+        options: [
+          { en: "Pressure", hi: "दाब" },
+          { en: "Surface Tension", hi: "पृष्ठ तनाव" },
+          { en: "Coefficient of Viscosity", hi: "श्यानता गुणांक" },
+          { en: "Impulse", hi: "आवेग" }
+        ],
+        ans: 2,
+        expEn: "Coefficient of viscosity η = F / (A · dv/dx), which has SI unit (N/m²)·s = Pa·s and dimension [ML⁻¹T⁻¹].",
+        expHi: "श्यानता गुणांक (η) का SI मात्रक पास्कल-सेकंड (Pa·s) या प्वाइजुली होता है।"
+      },
+      {
+        id: 13,
+        topic: "Same Dimensions",
+        pyq: true,
+        pyqTag: "Airforce X · PYQ",
+        en: "Which of the following pairs has the same dimensions?",
+        hi: "निम्नलिखित में से किस युग्म की विमाएँ समान हैं?",
+        options: [
+          { en: "Force and Power", hi: "बल और शक्ति" },
+          { en: "Work and Torque", hi: "कार्य और बल आघूर्ण" },
+          { en: "Impulse and Force", hi: "आवेग और बल" },
+          { en: "Stress and Strain", hi: "प्रतिबल और विकृति" }
+        ],
+        ans: 1,
+        expEn: "Both Work (F·d) and Torque (r × F) have the dimensional formula [M¹ L² T⁻²].",
+        expHi: "कार्य (Work) और बल आघूर्ण (Torque) दोनों का विमीय सूत्र [M¹ L² T⁻²] होता है।"
+      },
+      {
+        id: 14,
+        topic: "Same Dimensions",
+        pyq: true,
+        pyqTag: "Agniveer Vayu · Oct 2023",
+        en: "The ratio of the dimension of Planck's constant (h) to that of Moment of Inertia (I) is the dimension of:",
+        hi: "प्लांक नियतांक (h) और जड़त्व आघूर्ण (I) की विमाओं का अनुपात किसकी विमा के बराबर है?",
+        options: [
+          { en: "Frequency", hi: "आवृत्ति" },
+          { en: "Velocity", hi: "वेग" },
+          { en: "Time", hi: "समय" },
+          { en: "Angular Momentum", hi: "कोणीय संवेग" }
+        ],
+        ans: 0,
+        expEn: "[h]/[I] = [ML²T⁻¹] / [ML²] = [T⁻¹], which is the dimension of Frequency (ν).",
+        expHi: "[h]/[I] = [ML²T⁻¹] / [ML²] = [T⁻¹], जो आवृत्ति (Frequency) की विमा है।"
+      },
+      {
+        id: 15,
+        topic: "Same Dimensions",
+        pyq: true,
+        pyqTag: "Airforce X · PYQ",
+        en: "The dimension of 1 / √(μ₀ε₀) is the same as that of:",
+        hi: "1 / √(μ₀ε₀) की विमा किसके समान होती है?",
+        options: [
+          { en: "Velocity", hi: "वेग (चाल)" },
+          { en: "Time", hi: "समय" },
+          { en: "Acceleration", hi: "त्वरण" },
+          { en: "Force", hi: "बल" }
+        ],
+        ans: 0,
+        expEn: "Speed of light in vacuum c = 1 / √(μ₀ε₀), so its dimension is Velocity [L T⁻¹].",
+        expHi: "निर्वात में प्रकाश की चाल c = 1 / √(μ₀ε₀) होती है, अतः इसकी विमा वेग [LT⁻¹] के समान है।"
+      },
+      {
+        id: 16,
+        topic: "Same Dimensions",
+        pyq: true,
+        pyqTag: "Airforce X · PYQ",
+        en: "Which of the following physical quantities is dimensionless?",
+        hi: "निम्नलिखित में से कौन-सी भौतिक राशि विमाहीन (Dimensionless) है?",
+        options: [
+          { en: "Stress", hi: "प्रतिबल" },
+          { en: "Strain", hi: "विकृति" },
+          { en: "Pressure", hi: "दाब" },
+          { en: "Young's Modulus", hi: "यंग गुणांक" }
+        ],
+        ans: 1,
+        expEn: "Strain = ΔL / L is the ratio of two lengths, so it has no unit and no dimension [M⁰L⁰T⁰].",
+        expHi: "विकृति (Strain = ΔL/L) दो समान राशियों का अनुपात है, इसलिए यह मात्रकहीन एवं विमाहीन है।"
+      },
+      {
+        id: 17,
+        topic: "SI Units",
+        pyq: false,
+        en: "Which physical quantity has a unit but NO dimensions?",
+        hi: "किस भौतिक राशि का मात्रक तो होता है, परन्तु कोई विमा नहीं होती?",
+        options: [
+          { en: "Refractive Index", hi: "अपवर्तनांक" },
+          { en: "Relative Density", hi: "आपेक्षिक घनत्व" },
+          { en: "Plane Angle", hi: "समतल कोण" },
+          { en: "Strain", hi: "विकृति" }
+        ],
+        ans: 2,
+        expEn: "Plane Angle (radian) and Solid Angle (steradian) are supplementary SI units that are dimensionless.",
+        expHi: "समतल कोण (रेडियन) और घन कोण (स्टेरेडियन) का मात्रक होता है लेकिन ये विमाहीन होते हैं।"
+      },
+      {
+        id: 18,
+        topic: "Dimensional Analysis",
+        pyq: false,
+        en: "If velocity of a particle is v = at + bt², where t is time, then the dimension of 'a' is:",
+        hi: "यदि किसी कण का वेग v = at + bt² है (जहाँ t समय है), तो 'a' की विमा क्या होगी?",
+        options: [
+          { en: "[L T⁻¹]", hi: "[L T⁻¹]" },
+          { en: "[L T⁻²]", hi: "[L T⁻²]" },
+          { en: "[L T⁻³]", hi: "[L T⁻³]" },
+          { en: "[L]", hi: "[L]" }
+        ],
+        ans: 1,
+        expEn: "By Principle of Homogeneity, [at] = [v] ⇒ [a] = [LT⁻¹]/[T] = [L T⁻²].",
+        expHi: "विमीय समांगता के सिद्धांत से [at] = [v] ⇒ [a] = [LT⁻¹]/[T] = [L T⁻²]।"
+      },
+      {
+        id: 19,
+        topic: "Errors & Sig. Figs",
+        pyq: false,
+        en: "How many significant figures are present in 0.00450?",
+        hi: "संख्या 0.00450 में कितने सार्थक अंक (Significant Figures) हैं?",
+        options: [
+          { en: "2", hi: "2" },
+          { en: "3", hi: "3" },
+          { en: "5", hi: "5" },
+          { en: "6", hi: "6" }
+        ],
+        ans: 1,
+        expEn: "Leading zeros (0.00) are not significant, but the trailing zero after decimal (4, 5, 0) IS significant → 3 significant figures.",
+        expHi: "बाईं ओर के शून्य (0.00) सार्थक नहीं होते, पर दशमलव के बाद अंत का शून्य सार्थक होता है → कुल 3 सार्थक अंक (4, 5, 0)।"
+      },
+      {
+        id: 20,
+        topic: "Errors & Sig. Figs",
+        pyq: true,
+        pyqTag: "Agniveer Vayu · PYQ",
+        en: "If the percentage error in measuring the radius of a sphere is 1%, what is the percentage error in its volume?",
+        hi: "यदि किसी गोले की त्रिज्या के मापन में 1% की त्रुटि होती है, तो उसके आयतन में प्रतिशत त्रुटि क्या होगी?",
+        options: [
+          { en: "1%", hi: "1%" },
+          { en: "2%", hi: "2%" },
+          { en: "3%", hi: "3%" },
+          { en: "6%", hi: "6%" }
+        ],
+        ans: 2,
+        expEn: "Volume of sphere V = (4/3)πr³ ⇒ % error in V = 3 × (% error in r) = 3 × 1% = 3%.",
+        expHi: "गोले का आयतन V = (4/3)πr³ ⇒ आयतन में प्रतिशत त्रुटि = 3 × (त्रिज्या में त्रुटि) = 3 × 1% = 3%।"
+      }
+    ];
+
+    // ==================== APP STATE ====================
+    const state = {
+      lang: "both", // "both" | "en" | "hi"
+      mode: "exam", // "exam" | "practice"
+      negMarking: true,
+      studentName: "",
+      studentRoll: "",
+      currentIdx: 0,
+      answers: {}, // { qId: optionIndex }
+      marked: new Set(),
+      timeLeftSec: 20 * 60,
+      totalTimeSec: 20 * 60,
+      timerId: null,
+      submitted: false,
+      solutionFilter: "all",
+      chartInstance: null
+    };
+
+    const $ = (id) => document.getElementById(id);
+
+    // ==================== LANGUAGE SWITCHER ====================
+    function setLang(lang) {
+      state.lang = lang;
+      ["langBothBtn", "langEnBtn", "langHiBtn"].forEach((id) => {
+        const btn = $(id);
+        btn.classList.remove("bg-blue-600", "text-white");
+        btn.classList.add("text-slate-300");
+      });
+      const activeId = lang === "both" ? "langBothBtn" : lang === "en" ? "langEnBtn" : "langHiBtn";
+      $(activeId).classList.add("bg-blue-600", "text-white");
+      $(activeId).classList.remove("text-slate-300");
+
+      if (!$("examView").classList.contains("hidden")) {
+        renderQuestion();
+      }
+      if (!$("resultView").classList.contains("hidden")) {
+        renderSolutions();
+      }
+    }
+
+    $("langBothBtn").addEventListener("click", () => setLang("both"));
+    $("langEnBtn").addEventListener("click", () => setLang("en"));
+    $("langHiBtn").addEventListener("click", () => setLang("hi"));
+
+    // ==================== LOAD LAST SCORE (SAFE LOCALSTORAGE) ====================
+    function loadLastScore() {
+      try {
+        const raw = localStorage.getItem("tda_ud_last_score");
+        if (raw) {
+          const data = JSON.parse(raw);
+          $("lastScoreBadge").innerHTML = `Last Attempt: <strong class="text-[#0B1F3A]">${data.score} / 20</strong> (${data.name})`;
+        }
+      } catch (e) {
+        // Ignore storage errors in sandboxed iframes
+      }
+    }
+    loadLastScore();
+
+    // ==================== TIMER ====================
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+    }
+
+    function startTimer() {
+      stopTimer();
+      const box = $("headerTimerBox");
+      if (state.mode === "practice") {
+        box.classList.add("hidden");
+        box.classList.remove("flex");
+        return;
+      }
+      box.classList.remove("hidden");
+      box.classList.add("flex");
+      updateTimerUI();
+      state.timerId = setInterval(() => {
+        state.timeLeftSec -= 1;
+        if (state.timeLeftSec <= 0) {
+          state.timeLeftSec = 0;
+          updateTimerUI();
+          stopTimer();
+          finishTest();
+          return;
+        }
+        updateTimerUI();
+      }, 1000);
+    }
+
+    function stopTimer() {
+      if (state.timerId) {
+        clearInterval(state.timerId);
+        state.timerId = null;
+      }
+    }
+
+    function updateTimerUI() {
+      $("timerDisplay").textContent = formatTime(state.timeLeftSec);
+      const box = $("headerTimerBox");
+      box.classList.remove("text-amber-300", "text-rose-400", "border-rose-500", "animate-pulse");
+      if (state.timeLeftSec <= 60) {
+        box.classList.add("text-rose-400", "border-rose-500", "animate-pulse");
+      } else {
+        box.classList.add("text-amber-300");
+      }
+    }
+
+    // ==================== START TEST ====================
+    $("startTestBtn").addEventListener("click", () => {
+      const modeInput = document.querySelector('input[name="testMode"]:checked');
+      state.mode = modeInput ? modeInput.value : "exam";
+      state.negMarking = $("negMarkingToggle").checked;
+      state.studentName = $("studentName").value.trim() || "Air Warrior";
+      state.studentRoll = $("studentRoll").value.trim();
+      state.currentIdx = 0;
+      state.answers = {};
+      state.marked = new Set();
+      state.timeLeftSec = state.totalTimeSec;
+      state.submitted = false;
+      state.solutionFilter = "all";
+
+      $("paletteStudentInfo").textContent = state.studentRoll
+        ? `${state.studentName} (${state.studentRoll})`
+        : state.studentName;
+      $("qMarksBadge").textContent = state.negMarking ? "+1 / −0.25" : "+1 / 0";
+
+      $("startView").classList.add("hidden");
+      $("resultView").classList.add("hidden");
+      $("examView").classList.remove("hidden");
+
+      startTimer();
+      renderQuestion();
+      renderPalette();
+    });
+
+    // ==================== RENDER ACTIVE QUESTION ====================
+    function renderQuestion() {
+      const q = QUESTIONS[state.currentIdx];
+      $("qNumberBadge").textContent = `Q ${state.currentIdx + 1} / ${QUESTIONS.length}`;
+      $("qTopicBadge").textContent = q.topic;
+
+      if (q.pyq) {
+        $("qPyqBadge").textContent = q.pyqTag || "Airforce X PYQ";
+        $("qPyqBadge").classList.remove("hidden");
+      } else {
+        $("qPyqBadge").classList.add("hidden");
+      }
+
+      $("qTextEn").textContent = q.en;
+      $("qTextHi").textContent = q.hi;
+      $("qTextEn").classList.toggle("hidden", state.lang === "hi");
+      $("qTextHi").classList.toggle("hidden", state.lang === "en");
+
+      const container = $("optionsContainer");
+      container.innerHTML = "";
+      const selected = state.answers[q.id];
+      const labels = ["A", "B", "C", "D"];
+
+      q.options.forEach((opt, idx) => {
+        const isSelected = selected === idx;
+        const btn = document.createElement("button");
+        btn.type = "button";
+
+        let styleCls = "border-slate-200 bg-white hover:border-blue-400 hover:bg-blue-50/40 text-slate-800";
+        let badgeCls = "bg-slate-100 text-slate-700 border-slate-300";
+
+        if (state.mode === "practice" && selected !== undefined) {
+          if (idx === q.ans) {
+            styleCls = "border-emerald-500 bg-emerald-50 text-emerald-950 ring-1 ring-emerald-400";
+            badgeCls = "bg-emerald-600 text-white border-emerald-600";
+          } else if (isSelected && idx !== q.ans) {
+            styleCls = "border-rose-500 bg-rose-50 text-rose-950 ring-1 ring-rose-400";
+            badgeCls = "bg-rose-600 text-white border-rose-600";
+          }
+        } else if (isSelected) {
+          styleCls = "border-blue-600 bg-blue-50 text-[#0B1F3A] ring-2 ring-blue-500/30";
+          badgeCls = "bg-[#1D63B8] text-white border-[#1D63B8]";
+        }
+
+        btn.className = `w-full text-left px-4 py-3 rounded-xl border-2 transition flex items-center gap-3.5 ${styleCls}`;
+
+        let optText = "";
+        if (state.lang === "en") {
+          optText = `<span class="font-semibold">${opt.en}</span>`;
+        } else if (state.lang === "hi") {
+          optText = `<span class="font-semibold hindi">${opt.hi}</span>`;
+        } else {
+          optText = opt.en === opt.hi
+            ? `<span class="font-semibold">${opt.en}</span>`
+            : `<span class="font-semibold">${opt.en}</span> <span class="text-slate-500 mx-1">/</span> <span class="font-medium text-[#1E3A5F] hindi">${opt.hi}</span>`;
+        }
+
+        btn.innerHTML = `
+          <span class="w-8 h-8 rounded-lg border font-extrabold text-sm flex items-center justify-center shrink-0 ${badgeCls}">${labels[idx]}</span>
+          <span class="text-sm sm:text-base leading-snug">${optText}</span>
+        `;
+
+        btn.addEventListener("click", () => {
+          state.answers[q.id] = idx;
+          renderQuestion();
+          renderPalette();
+        });
+
+        container.appendChild(btn);
+      });
+
+      // Practice Mode instant explanation
+      const fb = $("practiceFeedback");
+      if (state.mode === "practice" && selected !== undefined) {
+        const isRight = selected === q.ans;
+        fb.classList.remove("hidden", "bg-emerald-50", "border-emerald-300", "text-emerald-900", "bg-rose-50", "border-rose-300", "text-rose-900");
+        if (isRight) {
+          fb.classList.add("bg-emerald-50", "border-emerald-300", "text-emerald-900");
+        } else {
+          fb.classList.add("bg-rose-50", "border-rose-300", "text-rose-900");
+        }
+        const expText = state.lang === "en"
+          ? q.expEn
+          : state.lang === "hi"
+            ? `<span class="hindi">${q.expHi}</span>`
+            : `${q.expEn}<br><span class="hindi text-slate-700">${q.expHi}</span>`;
+        fb.innerHTML = `
+          <div class="font-extrabold mb-1">${isRight ? "Correct Answer! / सही उत्तर!" : `Incorrect — Correct Option is (${labels[q.ans]})`}</div>
+          <div class="text-xs sm:text-sm leading-relaxed">${expText}</div>
+        `;
+      } else {
+        fb.classList.add("hidden");
+      }
+
+      // Nav button states
+      $("prevBtn").disabled = state.currentIdx === 0;
+      $("nextBtn").textContent = state.currentIdx === QUESTIONS.length - 1 ? "Review / Finish" : "Save & Next →";
+      $("reviewBtn").textContent = state.marked.has(q.id) ? "Unmark Review" : "Mark Review";
+    }
+
+    // ==================== RENDER QUESTION PALETTE ====================
+    function renderPalette() {
+      const grid = $("paletteGrid");
+      grid.innerHTML = "";
+      let ansCount = 0;
+
+      QUESTIONS.forEach((q, idx) => {
+        const isAnswered = state.answers[q.id] !== undefined;
+        const isMarked = state.marked.has(q.id);
+        const isCurrent = idx === state.currentIdx;
+        if (isAnswered) ansCount += 1;
+
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.textContent = idx + 1;
+
+        let cls = "bg-slate-100 text-slate-700 border-slate-300 hover:bg-slate-200";
+        if (isMarked) {
+          cls = "bg-purple-600 text-white border-purple-700";
+        } else if (isAnswered) {
+          cls = "bg-emerald-600 text-white border-emerald-700";
+        }
+        if (isCurrent) {
+          cls += " ring-2 ring-offset-1 ring-blue-600";
+        }
+
+        btn.className = `h-9 rounded-lg border text-xs font-extrabold transition flex items-center justify-center ${cls}`;
+        btn.addEventListener("click", () => {
+          state.currentIdx = idx;
+          renderQuestion();
+          renderPalette();
+        });
+        grid.appendChild(btn);
+      });
+
+      $("answeredCountBadge").textContent = `${ansCount} / ${QUESTIONS.length} Done`;
+      $("legendAns").textContent = ansCount;
+      $("legendUnans").textContent = QUESTIONS.length - ansCount;
+      $("legendRev").textContent = state.marked.size;
+    }
+
+    // ==================== EXAM CONTROLS ====================
+    $("prevBtn").addEventListener("click", () => {
+      if (state.currentIdx > 0) {
+        state.currentIdx -= 1;
+        renderQuestion();
+        renderPalette();
+      }
+    });
+
+    $("nextBtn").addEventListener("click", () => {
+      if (state.currentIdx < QUESTIONS.length - 1) {
+        state.currentIdx += 1;
+        renderQuestion();
+        renderPalette();
+      } else {        openSubmitModal();
+      }
+    });
+
+    $("clearBtn").addEventListener("click", () => {
+      const q = QUESTIONS[state.currentIdx];
+      delete state.answers[q.id];
+      renderQuestion();
+      renderPalette();
+    });
+
+    $("reviewBtn").addEventListener("click", () => {
+      const q = QUESTIONS[state.currentIdx];
+      if (state.marked.has(q.id)) {
+        state.marked.delete(q.id);
+      } else {
+        state.marked.add(q.id);
+      }
+      renderQuestion();
+      renderPalette();
+    });
+
+    // ==================== SUBMIT MODAL ====================
+    function openSubmitModal() {
+      const ansCount = Object.keys(state.answers).length;
+      $("modalAns").textContent = ansCount;
+      $("modalUnans").textContent = QUESTIONS.length - ansCount;
+      $("modalRev").textContent = state.marked.size;
+      $("submitModal").classList.remove("hidden");
+    }
+
+    $("openSubmitModalBtn").addEventListener("click", openSubmitModal);
+    $("cancelSubmitBtn").addEventListener("click", () => $("submitModal").classList.add("hidden"));
+    $("confirmSubmitBtn").addEventListener("click", () => {
+      $("submitModal").classList.add("hidden");
+      finishTest();
+    });
+
+    // ==================== EVALUATE & SHOW RESULT ====================
+    function finishTest() {
+      stopTimer();
+      state.submitted = true;
+      $("headerTimerBox").classList.add("hidden");
+      $("headerTimerBox").classList.remove("flex");
+
+      let correct = 0;
+      let wrong = 0;
+      let unattempted = 0;
+      const topicStats = {};
+
+      QUESTIONS.forEach((q) => {
+        if (!topicStats[q.topic]) {
+          topicStats[q.topic] = { total: 0, correct: 0 };
+        }
+        topicStats[q.topic].total += 1;
+
+        const chosen = state.answers[q.id];
+        if (chosen === undefined) {
+          unattempted += 1;
+        } else if (chosen === q.ans) {
+          correct += 1;
+          topicStats[q.topic].correct += 1;
+        } else {
+          wrong += 1;
+        }
+      });
+
+      const penalty = state.negMarking ? wrong * 0.25 : 0;
+      const score = Number((correct - penalty).toFixed(2));
+      const attempted = correct + wrong;
+      const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+      const timeUsed = state.mode === "exam" ? formatTime(state.totalTimeSec - state.timeLeftSec) : "Practice";
+
+      // Save last score safely
+      try {
+        localStorage.setItem("tda_ud_last_score", JSON.stringify({ name: state.studentName, score }));
+      } catch (e) {
+        // Ignore
+      }
+
+      $("resStudentHeading").textContent = state.studentRoll
+        ? `${state.studentName} (${state.studentRoll})`
+        : state.studentName;
+      $("resMetaLine").textContent = `Units & Dimensions · ${state.mode === "exam" ? "CBT Exam Mode" : "Practice Mode"} · ${state.negMarking ? "Negative Marking (−0.25)" : "No Negative Marking"}`;
+
+      const badge = $("resStatusBadge");
+      badge.className = "px-4 py-2 rounded-xl font-extrabold text-sm border";
+      if (score >= 14) {
+        badge.textContent = "EXCELLENT · AIRFORCE READY";
+        badge.classList.add("bg-emerald-500/20", "border-emerald-300", "text-emerald-200");
+      } else if (score >= 10) {
+        badge.textContent = "QUALIFIED · KEEP PRACTICING";
+        badge.classList.add("bg-amber-500/20", "border-amber-300", "text-amber-200");
+      } else {
+        badge.textContent = "NEEDS REVISION · REVISE NOTES";
+        badge.classList.add("bg-rose-500/20", "border-rose-300", "text-rose-200");
+      }
+
+      $("resScore").textContent = `${score} / ${QUESTIONS.length}`;
+      $("resCorrect").textContent = correct;
+      $("resWrong").textContent = wrong;
+      $("resAccuracy").textContent = `${accuracy}%`;
+      $("resTime").textContent = timeUsed;
+
+      // Render Donut Chart
+      const ctx = $("resultChart").getContext("2d");
+      if (state.chartInstance) {
+        state.chartInstance.destroy();
+      }
+      if (typeof Chart !== "undefined") {
+        state.chartInstance = new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            labels: ["Correct", "Wrong", "Skipped"],
+            datasets: [{
+              data: [correct, wrong, unattempted],
+              backgroundColor: ["#059669", "#E11D48", "#94A3B8"],
+              borderWidth: 2,
+              borderColor: "#ffffff"
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: "62%",
+            plugins: {
+              legend: { position: "bottom", labels: { font: { size: 12, weight: "bold" } } }
+            }
+          }
+        });
+      }
+
+      // Render Topic Breakdown
+      const tb = $("topicBreakdown");
+      tb.innerHTML = "";
+      Object.entries(topicStats).forEach(([topic, data]) => {
+        const pct = Math.round((data.correct / data.total) * 100);
+        const barColor = pct >= 75 ? "bg-emerald-500" : pct >= 50 ? "bg-amber-500" : "bg-rose-500";
+        const row = document.createElement("div");
+        row.innerHTML = `
+          <div class="flex justify-between text-xs font-semibold mb-1">
+            <span class="text-slate-700">${topic}</span>
+            <span class="text-slate-600">${data.correct} / ${data.total} (${pct}%)</span>
+          </div>
+          <div class="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
+            <div class="h-full ${barColor} rounded-full" style="width: ${pct}%"></div>
+          </div>
+        `;
+        tb.appendChild(row);
+      });
+
+      $("examView").classList.add("hidden");
+      $("resultView").classList.remove("hidden");
+      renderSolutions();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // ==================== DETAILED SOLUTIONS ====================
+    function renderSolutions() {
+      const list = $("solutionsList");
+      list.innerHTML = "";
+      const labels = ["A", "B", "C", "D"];
+
+      const filtered = QUESTIONS.filter((q) => {
+        const chosen = state.answers[q.id];
+        if (state.solutionFilter === "correct") return chosen === q.ans;
+        if (state.solutionFilter === "wrong") return chosen !== undefined && chosen !== q.ans;
+        if (state.solutionFilter === "unattempted") return chosen === undefined;
+        if (state.solutionFilter === "pyq") return q.pyq;
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        list.innerHTML = `<div class="text-center py-8 text-sm text-slate-500">No questions match this filter.</div>`;
+        return;
+      }
+
+      filtered.forEach((q) => {
+        const chosen = state.answers[q.id];
+        const isCorrect = chosen === q.ans;
+        const isSkipped = chosen === undefined;
+
+        let statusTag = isSkipped
+          ? `<span class="px-2.5 py-0.5 rounded text-xs font-bold bg-slate-200 text-slate-700">Skipped (0)</span>`
+          : isCorrect
+            ? `<span class="px-2.5 py-0.5 rounded text-xs font-bold bg-emerald-100 text-emerald-800">Correct (+1)</span>`
+            : `<span class="px-2.5 py-0.5 rounded text-xs font-bold bg-rose-100 text-rose-800">Wrong (${state.negMarking ? "−0.25" : "0"})</span>`;
+
+        const qTitle = state.lang === "en"
+          ? `<div class="font-bold text-slate-900">Q${q.id}. ${q.en}</div>`
+          : state.lang === "hi"
+            ? `<div class="font-bold text-slate-900 hindi">Q${q.id}. ${q.hi}</div>`
+            : `<div class="font-bold text-slate-900">Q${q.id}. ${q.en}</div><div class="font-semibold text-[#1E3A5F] hindi text-sm mt-0.5">${q.hi}</div>`;
+
+        const expHtml = state.lang === "en"
+          ? q.expEn
+          : state.lang === "hi"
+            ? `<span class="hindi">${q.expHi}</span>`
+            : `${q.expEn}<br><span class="hindi text-slate-700">${q.expHi}</span>`;
+
+        const card = document.createElement("div");
+        card.className = "rounded-xl border border-slate-200 p-4 space-y-2.5 bg-slate-50/50";
+        card.innerHTML = `
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold bg-blue-100 text-blue-800 px-2 py-0.5 rounded">${q.topic}</span>
+              ${q.pyq ? `<span class="text-xs font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded">${q.pyqTag || "PYQ"}</span>` : ""}
+            </div>
+            ${statusTag}
+          </div>
+          ${qTitle}
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm pt-1">
+            <div class="bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2 text-emerald-900">
+              <strong>Correct:</strong> (${labels[q.ans]}) ${q.options[q.ans].en}${q.options[q.ans].en !== q.options[q.ans].hi ? ` / <span class="hindi">${q.options[q.ans].hi}</span>` : ""}
+            </div>
+            <div class="${isSkipped ? "bg-slate-100 border-slate-200 text-slate-700" : isCorrect ? "bg-emerald-50 border-emerald-200 text-emerald-900" : "bg-rose-50 border-rose-200 text-rose-900"} border rounded-lg px-3 py-2">
+              <strong>Your Answer:</strong> ${isSkipped ? "Not Attempted" : `(${labels[chosen]}) ${q.options[chosen].en}`}
+            </div>
+          </div>
+          <div class="bg-white border border-slate-200 rounded-lg p-3 text-xs sm:text-sm text-slate-700 leading-relaxed">
+            <strong class="text-[#0B1F3A]">Explanation:</strong> ${expHtml}
+          </div>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    // Filter buttons
+    $("solutionFilters").addEventListener("click", (e) => {
+      const btn = e.target.closest(".filter-btn");
+      if (!btn) return;
+      state.solutionFilter = btn.dataset.filter;
+      document.querySelectorAll(".filter-btn").forEach((b) => {
+        b.classList.remove("bg-[#0B1F3A]", "text-white");
+        b.classList.add("bg-slate-100", "text-slate-700");
+      });
+      btn.classList.add("bg-[#0B1F3A]", "text-white");
+      btn.classList.remove("bg-slate-100", "text-slate-700");
+      renderSolutions();
+    });
+
+    // Retake & Print
+    $("retakeBtn").addEventListener("click", () => {
+      $("resultView").classList.add("hidden");
+      $("startView").classList.remove("hidden");
+      loadLastScore();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    $("printResultBtn").addEventListener("click", () => window.print());
+  </script>
+</body>
+</html>
